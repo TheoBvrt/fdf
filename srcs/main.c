@@ -1,16 +1,10 @@
 #include "fdf.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-    int		fd;
-	char	*line;
-
-	fd = open("test.c", O_RDONLY);
-	while ((line = get_next_line(fd)))
-	{
-		ft_printf("%s", line);
-		free (line);
-	}
+	if (!args_checker(argc, argv))
+		exit(1);
+	exit (0);
 }
 
 /*int	main(void)
