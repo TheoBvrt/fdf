@@ -2,6 +2,19 @@
 
 int	main(void)
 {
+    int		fd;
+	char	*line;
+
+	fd = open("test.c", O_RDONLY);
+	while ((line = get_next_line(fd)))
+	{
+		ft_printf("%s", line);
+		free (line);
+	}
+}
+
+/*int	main(void)
+{
 	// void	*mlx;
 	// void	*mlx_win;
 
@@ -14,7 +27,7 @@ int	main(void)
 	char *line;
 	while ((line = get_next_line(fd)))
 	{
-		printf ("%s", line);
-		free (line);
+            printf ("%s", line);
+            free (line);
 	}
-}
+}*/

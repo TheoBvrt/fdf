@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:24:40 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/20 13:48:16 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:36:42 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	char		*line;
 
-	if (fd < 0 || 10 <= 0)
+	if (fd < 0)
 		return (NULL);
 	buffer = ft_calloc(10 + 1, sizeof(char));
 	if (!buffer)
