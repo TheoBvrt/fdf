@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:24:40 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/17 17:17:47 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:48:16 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ char	*_read_file(char *buffer, int fd, char *stash)
 {
 	char	*cache;
 	int		state;
-	int		index;
 
 	state = 1;
 	cache = ft_calloc(1, sizeof(char));

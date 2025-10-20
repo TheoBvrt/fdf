@@ -1,4 +1,4 @@
-NAME = fractol
+NAME = fdf
 SRCS = ./srcs/main.c
 
 OBJS = ${SRCS:.c=.o}
