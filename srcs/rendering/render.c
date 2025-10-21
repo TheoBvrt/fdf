@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tab.c                                         :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 14:40:59 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/21 16:59:27 by thbouver         ###   ########.fr       */
+/*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
+/*   Updated: 2025/10/21 17:08:21 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fdf.h"
 
-void	free_tab(char **tab)
-{
-	int	index;
+void    dda_line(t_fdf *fdf)
 
-	index = 0;
-	while (tab[index])
-	{
-		free (tab[index]);
-		index ++;
-	}
-	free (tab);
+void fdf_rendering(t_fdf *fdf)
+{
+    mlx_string_put(fdf->mlx, fdf->mlx_win, 
 }

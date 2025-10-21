@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/21 14:50:01 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:06:56 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 int	main(int argc, char **argv)
 {
+	t_image image;
 	t_fdf fdf;
+	
 
 	if (!args_checker(argc, argv))
 		return(1);
 	if (!parse_map(argv[1], &fdf))
 		return (1);
+	fdf.mlx = mlx_init();
+	fdf.mlx_win = mlx_new_window(fdf.mlx, 1920, 1080, "FdF");
+
+	// image.img = mlx_new_image(fdf.mlx, 1280, 720);
+
+
+	// image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, 
+	// 	&image.line_length, &image.endian);
+		
+	// my_mlx_put_pixel(&image, 5, 5, 0x00FF0000);
+	// mlx_put_image_to_window(&fdf.mlx, &fdf.mlx, &image.img, 0, 0);
+
+	fdf_rendering(&fdf);
+
+	mlx_loop(fdf.mlx);
 	exit (0);
 }
-
-/*int	main(void)
-{
-	// void	*mlx;
-	// void	*mlx_win;
-
-	// mlx = mlx_init();
-	// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	// mlx_loop(mlx);
-
-	int fd = open("Makefile", O_RDONLY);
-
-	char *line;
-	while ((line = get_next_line(fd)))
-	{
-            printf ("%s", line);
-            free (line);
-	}
-}*/

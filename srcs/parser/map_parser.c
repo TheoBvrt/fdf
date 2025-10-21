@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/21 15:43:55 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/21 15:58:32 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_tab(char *tmp, t_fdf *fdf)
 		}
 		y ++;
 	}
-	free_tab(fdf->_heightmap);
+	return (0);
 }
 
 int	parse_map(char *file_name, t_fdf *fdf)
