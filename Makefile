@@ -1,5 +1,5 @@
 NAME = fdf
-SRCS = ./srcs/main.c ./srcs/parser/error.c
+SRCS = ./srcs/main.c ./srcs/parser/error.c ./srcs/parser/map_parser.c ./srcs/utils/free_tab.c
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc

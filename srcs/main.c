@@ -1,9 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
+/*   Updated: 2025/10/21 14:50:01 by thbouver         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	main(int argc, char **argv)
 {
+	t_fdf fdf;
+
 	if (!args_checker(argc, argv))
-		exit(1);
+		return(1);
+	if (!parse_map(argv[1], &fdf))
+		return (1);
 	exit (0);
 }
 

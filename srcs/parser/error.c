@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 12:03:24 by thbouver          #+#    #+#             */
+/*   Updated: 2025/10/21 14:47:54 by thbouver         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int extension_checker(char *file_name, char *extension)
@@ -8,7 +20,7 @@ int extension_checker(char *file_name, char *extension)
 	if (index < 0)
 	{
 		ft_printf("[erreur] : merci de selectionner un fichier .fdf");
-		return (0);
+		return (1);
 	}
 	while (file_name[index] && *extension)
 	{
@@ -20,6 +32,7 @@ int extension_checker(char *file_name, char *extension)
 		index ++;
 		extension ++;
 	}
+	return (0);
 }
 
 int	args_checker(int argc, char **argv)
@@ -38,6 +51,7 @@ int	args_checker(int argc, char **argv)
 		return (1);
 	}
 	close (file);
-	extension_checker(argv[1], ".fdf");
+	if (!extension_checker(argv[1], ".fdf"))	
+		return (1);
     return (0);
 }
