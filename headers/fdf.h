@@ -4,7 +4,7 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
-# include "stdio.h"
+# include "math.h"
 
 typedef struct image {
 	void	*img;
