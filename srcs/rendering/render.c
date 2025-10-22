@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/22 17:53:59 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/22 18:02:05 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,30 @@ void	fdf_rendering(t_fdf fdf)
 			tmp.x = (screen_pos.x * scale) + 250;
 			tmp.y = (screen_pos.y * scale) + 250;
 
+				if (tab[y][x] == '2')
+				{
+					ft_printf (" x > %d", tmp.x);
+					ft_printf ("y > %d\n", tmp.y);
+				}
+
+
 			cricle_drawing(fdf, tmp);
 
 			if (x - 1 >= 0)
 			{
 				end_line.x = (x - 1) * cos(angle) + y * cos(angle + 2) + z * cos(angle - 2);
 				end_line.y = (x - 1) * sin(angle) + y * sin(angle + 2) + z * sin(angle - 2);
-				
+
+
 				tmp2.x = (end_line.x * scale) + 250;
 				tmp2.y = (end_line.y * scale) + 250;
+
+								
+				if (tab[y][x] == '2')
+				{
+					ft_printf (" x > %d", tmp2.x);
+					ft_printf ("y > %d\n", tmp2.y);
+				}
 				dda_line(fdf, tmp, tmp2);
 			}
 			//mlx_pixel_put(fdf.mlx, fdf.mlx_win, (screen_pos.x * scale) + 250, (screen_pos.y * scale) + 250, 0xFF0000);
