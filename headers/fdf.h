@@ -22,8 +22,8 @@ typedef struct fdf {
 } t_fdf;
 
 typedef struct pos {
-	int	y;
-	int x;
+	float	y;
+	float	x;
 } t_pos;
 
 // parsing
