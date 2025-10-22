@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/22 12:48:29 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/22 16:55:02 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	// my_mlx_put_pixel(&image, 5, 5, 0x00FF0000);
 	// mlx_put_image_to_window(&fdf.mlx, &fdf.mlx, &image.img, 0, 0);
 
-	fdf_rendering(&fdf);
+	fdf_rendering(fdf);
 
 	mlx_loop(fdf.mlx);
 	exit (0);
