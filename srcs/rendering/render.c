@@ -3,45 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/22 18:02:05 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:45:13 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fdf.h"
 
-void	dda_line(t_fdf fdf, t_screen_pos start, t_screen_pos end)
+void	dda_line(t_fdf fdf, t_vec2 start, t_vec2 end)
 {
-	// float	x;
-	// float	y;
-	// float	dx;
-	// float	dy;
-	// float	step;
-	// int		index;
-
-	// index = 1;
-	// dx = abs(end.x - start.x);
-	// dy = abs(end.y - start.y);
-	
-	// if (dx >= dy)
-	// 	step = dx;
-	// else
-	// 	step = dy;
-	// dx /= step;
-	// dy /= step;
-	// x = start.x;
-	// y = start.y;
-
-	// while (index <= step)
-	// {
-	// 	mlx_pixel_put(fdf.mlx, fdf.mlx_win, x, y, 0xFF0000);
-	// 	x += dx;
-	// 	y += dy;
-	// 	index ++;
-	// }
-
 	int dx = end.x - start.x;
 	int dy = end.y - start.y;
 
@@ -64,16 +36,14 @@ void	dda_line(t_fdf fdf, t_screen_pos start, t_screen_pos end)
 	}
 }
 
-void	cricle_drawing(t_fdf fdf, t_screen_pos origin)
+void	cricle_drawing(t_fdf fdf, t_vec2 origin)
 {
-	const double	PI = 3.1415926535;
 	double			i;
 	double			x1;
 	double			y1;
 	double			angle;
 	float			radius;
-	int	scale = 50;
-	radius = 3;
+	radius = 1;
 
 	while (radius >= 0)
 	{
@@ -81,8 +51,8 @@ void	cricle_drawing(t_fdf fdf, t_screen_pos origin)
 		while (i < 360)
 		{
 			angle = i;
-			x1 = radius * cos(angle * PI / 180);
-			y1 = radius * sin(angle * PI / 180);
+			x1 = radius * cos(angle * M_PI / 180);
+			y1 = radius * sin(angle * M_PI / 180);
 			mlx_pixel_put(fdf.mlx, fdf.mlx_win, origin.x + x1, origin.y + y1, 0xFF0000);
 			i += 0.1;
 		}
@@ -90,65 +60,76 @@ void	cricle_drawing(t_fdf fdf, t_screen_pos origin)
 	}
 	
 }
-
 void	fdf_rendering(t_fdf fdf)
 {
-	t_point_pos		point;
-	t_screen_pos	screen_pos;
-	t_screen_pos	end_line;
-	t_screen_pos	tmp;
-	t_screen_pos	tmp2;
+	t_vec2	screen_pos;
+	t_vec2	end_line;
+	t_vec2	tmp;
+	t_vec2	tmp2;
 	char			**tab;
 	int				y;
 	int				x;
 	int				scale;
 
 	tab = fdf._heightmap;
-	scale = 50;
+	scale = 20;
 	y = 0;
 
-	int angle = 120;
+	float new_angle = 180;
+	float angle = 0.523599;
+
 	while (tab[y] != NULL)
 	{
 		x = 0;
 		while (tab[y][x] != '\0')
 		{
-			int z = tab[y][x] - 48;
-			// screen_pos.x = x + cos(45) * tmp;
-			// screen_pos.y = y + cos(45) * tmp;
 
-			screen_pos.x = x * cos(angle) + y * cos(angle + 2) + z * cos(angle - 2);
-			screen_pos.y = x * sin(angle) + y * sin(angle + 2) + z * sin(angle - 2);
+			t_vec3 point;
 
-			tmp.x = (screen_pos.x * scale) + 250;
-			tmp.y = (screen_pos.y * scale) + 250;
+			point.x = x;
+			point.y = y;
+			point.z = tab[y][x] - 48;
 
-				if (tab[y][x] == '2')
-				{
-					ft_printf (" x > %d", tmp.x);
-					ft_printf ("y > %d\n", tmp.y);
-				}
+			point = rotate_x(point, new_angle);
 
+			screen_pos.x = point.x * cos(angle) + point.y * cos(angle + 2) + point.z * cos(angle - 2);
+			screen_pos.y = point.x * sin(angle) + point.y * sin(angle + 2) + point.z * sin(angle - 2);
 
-			cricle_drawing(fdf, tmp);
+			tmp.x = (screen_pos.x * scale) + ((fdf.win_width / 2) / 2);
+			tmp.y = (screen_pos.y * scale) + ((fdf.win_height / 2) / 2);
+		
+			//cricle_drawing(fdf, tmp);
 
 			if (x - 1 >= 0)
 			{
-				end_line.x = (x - 1) * cos(angle) + y * cos(angle + 2) + z * cos(angle - 2);
-				end_line.y = (x - 1) * sin(angle) + y * sin(angle + 2) + z * sin(angle - 2);
 
+				point.x = x - 1;
+				point.y = y;
+				point.z = tab[y][x - 1] - 48;
+				point = rotate_x(point, new_angle);
 
-				tmp2.x = (end_line.x * scale) + 250;
-				tmp2.y = (end_line.y * scale) + 250;
-
-								
-				if (tab[y][x] == '2')
-				{
-					ft_printf (" x > %d", tmp2.x);
-					ft_printf ("y > %d\n", tmp2.y);
-				}
+				end_line.x = point.x * cos(angle) + point.y * cos(angle + 2) + point.z * cos(angle - 2);
+				end_line.y = point.x * sin(angle) + point.y * sin(angle + 2) + point.z * sin(angle - 2);
+				tmp2.x = (end_line.x * scale) + ((fdf.win_width / 2) / 2);
+				tmp2.y = (end_line.y * scale) + ((fdf.win_height / 2) / 2);
 				dda_line(fdf, tmp, tmp2);
 			}
+
+
+			if (y - 1 >= 0)
+			{
+				point.x = x;
+				point.y = y - 1;
+				point.z = tab[y - 1][x] - 48;
+				point = rotate_x(point, new_angle);
+
+				end_line.x = point.x * cos(angle) + point.y * cos(angle + 2) + point.z * cos(angle - 2);
+				end_line.y = point.x * sin(angle) + point.y * sin(angle + 2) + point.z * sin(angle - 2);
+				tmp2.x = (end_line.x * scale) + ((fdf.win_width / 2) / 2);
+				tmp2.y = (end_line.y * scale) + ((fdf.win_height / 2) / 2);
+				dda_line(fdf, tmp, tmp2);
+			}
+
 			//mlx_pixel_put(fdf.mlx, fdf.mlx_win, (screen_pos.x * scale) + 250, (screen_pos.y * scale) + 250, 0xFF0000);
 			x ++;
 		}

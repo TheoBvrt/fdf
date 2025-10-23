@@ -5,6 +5,9 @@
 # include "../mlx/mlx.h"
 
 # include "math.h"
+# include "stdio.h"
+
+# define DEG_TO_RADIAN(x) ((x) * M_PI / 180)
 
 typedef struct image {
 	void	*img;
@@ -19,24 +22,29 @@ typedef struct fdf {
 	void	*mlx_win;
 	t_image	*image;
 	char	**_heightmap;
+	int		win_width;
+	int		win_height;
 }	t_fdf;
 
-typedef struct screen_pos {
-	float	y;
+typedef struct vec2 {
 	float	x;
-}	t_screen_pos;
+	float	y;
+}	t_vec2;
 
-typedef struct point_pos {
+typedef struct vec3 {
+	float	x;
 	float	y;
 	float	z;
-	float	x;
-}	t_point_pos;
+}	t_vec3;
 
 // parsing
 int	parse_map(char *file_name, t_fdf *fdf);
 int	args_checker(int argc, char **argv);
 
 // rendering
+t_vec3	rotate_x(t_vec3 point, float angle);
+t_vec3	rotate_y(t_vec3 point, float angle);
+t_vec3	rotate_z(t_vec3 point, float angle);
 void	my_mlx_put_pixel(t_image *image, int x, int y, int color);
 void	fdf_rendering(t_fdf fdf);
 
