@@ -5,7 +5,7 @@ SRCS = ./srcs/main.c ./srcs/parser/error.c ./srcs/parser/map_parser.c ./srcs/uti
 OBJS = ${SRCS:.c=.o}
 CC = gcc
 RM = rm -f
-CFLAGS = -Iheaders -Imlx 
+CFLAGS = -Iheaders -Imlx -g
 
 all : ${NAME}
 

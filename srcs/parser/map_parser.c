@@ -6,20 +6,30 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/24 14:44:06 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/24 15:36:03 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fill_line(t_vec3 **vec3_tab, char **array, int vec3_tab_index)
+int	fill_line(t_vec3 **vec3_tab, char **array, int y)
 {
-	int	index;
+	int		index;
 
 	index = 0;
 	while (array[index])
-	{
-		ft_printf ("%s\n", array[index]);
+		index ++;
+	vec3_tab[y] = (t_vec3 *)malloc (sizeof(t_vec3) * index);
+	if (!vec3_tab[y])
+		return (1);
+	index = 0;
+	while (array[index])
+	{		
+		vec3_tab[y][index].x = index;
+		vec3_tab[y][index].y = y;
+		vec3_tab[y][index].z = (float)ft_atoi(array[index]);
+		// ft_printf("Point (x:%d,y:%d,z:%d)\n\n", 
+		// 	(int)vec3_tab[y][index].x, (int)vec3_tab[y][index].y, (int)vec3_tab[y][index].z);
 		free (array[index]);
 		index ++;
 	}
@@ -46,6 +56,7 @@ int	create_vec3_tab(t_vec3 **vec3_tab, char *file_name)
 		fill_line(vec3_tab, array, index);
 		free (line);
 		line = get_next_line(fd);
+		index ++;
 	}
 	free (line);
 	close (fd);
@@ -78,9 +89,9 @@ int	parse_map(char *file_name, t_fdf *fdf)
 	int	size;
 
 	size = get_height_size(file_name);
-	// fdf->map = (t_vec3 **)malloc(sizeof(t_vec3 *) * size);
-	// if (!fdf->map)
-	// 	return (1);
+	fdf->map = (t_vec3 **)malloc(sizeof(t_vec3 *) * size);
+	if (!fdf->map)
+		return (1);
 	if (!create_vec3_tab(fdf->map, file_name))
 		return (1);	
 	return (0);
