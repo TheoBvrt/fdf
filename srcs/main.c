@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/24 17:45:00 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/24 17:54:20 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	main(int argc, char **argv)
 		return(1);
 	if (!parse_map(argv[1], &fdf))
 		return (1);
-	// fdf.mlx = mlx_init();
-	// fdf.mlx_win = mlx_new_window(fdf.mlx, fdf.win_width, fdf.win_height, "FdF");
-	// image.img = mlx_new_image(fdf.mlx, 1280, 720);
+	fdf.mlx = mlx_init();
+	fdf.mlx_win = mlx_new_window(fdf.mlx, fdf.win_width, fdf.win_height, "FdF");
+	image.img = mlx_new_image(fdf.mlx, 1280, 720);
 
 
 	// image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, 
@@ -35,9 +35,9 @@ int	main(int argc, char **argv)
 	// my_mlx_put_pixel(&image, 5, 5, 0x00FF0000);
 	// mlx_put_image_to_window(&fdf.mlx, &fdf.mlx, &image.img, 0, 0);
 
-	//fdf_rendering(fdf);
+	fdf_rendering(fdf);
 
-	//mlx_loop(fdf.mlx);
-	free_vec3_tab(fdf.map, fdf.map_height);
+	mlx_loop(fdf.mlx);
+	//free_vec3_tab(fdf.map, fdf.map_height);
 	exit (0);
 }
