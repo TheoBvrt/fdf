@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 14:40:59 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/24 15:34:19 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/24 17:04:54 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ void	free_tab(char **tab)
 
 	index = 0;
 	while (tab[index])
+	{
+		free (tab[index]);
+		index ++;
+	}
+	free (tab);
+}
+void	free_vec3_tab(t_vec3 **tab, int size)
+{
+	int	index;
+
+	index = 0;
+	while (index < size)
 	{
 		free (tab[index]);
 		index ++;

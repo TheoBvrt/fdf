@@ -30,6 +30,8 @@ typedef struct vec3 {
 
 typedef struct fdf {
 	t_vec3	**map;
+	int		map_height;
+	int		map_width;
 	void	*mlx;
 	void	*mlx_win;
 	t_image	*image;
@@ -51,5 +53,6 @@ void	fdf_rendering(t_fdf fdf);
 
 // utils
 void	free_tab(char **tab);
+void	free_vec3_tab(t_vec3 **tab, int size);
 
 #endif

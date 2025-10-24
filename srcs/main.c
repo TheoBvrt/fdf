@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/24 14:43:56 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/24 17:45:00 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 
 	fdf.win_width = 1920;
 	fdf.win_height = 1080;
+	fdf.map = NULL;
 	if (!args_checker(argc, argv))
 		return(1);
 	if (!parse_map(argv[1], &fdf))
@@ -37,5 +38,6 @@ int	main(int argc, char **argv)
 	//fdf_rendering(fdf);
 
 	//mlx_loop(fdf.mlx);
+	free_vec3_tab(fdf.map, fdf.map_height);
 	exit (0);
 }
