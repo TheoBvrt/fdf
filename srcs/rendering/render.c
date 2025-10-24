@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/23 15:45:13 by theo             ###   ########.fr       */
+/*   Updated: 2025/10/24 14:30:14 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ void	cricle_drawing(t_fdf fdf, t_vec2 origin)
 		}
 		radius --;
 	}
-	
 }
+
+
 void	fdf_rendering(t_fdf fdf)
 {
 	t_vec2	screen_pos;
@@ -72,10 +73,10 @@ void	fdf_rendering(t_fdf fdf)
 	int				scale;
 
 	tab = fdf._heightmap;
-	scale = 20;
+	scale = 50;
 	y = 0;
 
-	float new_angle = 180;
+	float new_angle = 0;
 	float angle = 0.523599;
 
 	while (tab[y] != NULL)
@@ -98,7 +99,7 @@ void	fdf_rendering(t_fdf fdf)
 			tmp.x = (screen_pos.x * scale) + ((fdf.win_width / 2) / 2);
 			tmp.y = (screen_pos.y * scale) + ((fdf.win_height / 2) / 2);
 		
-			//cricle_drawing(fdf, tmp);
+			// cricle_drawing(fdf, tmp);
 
 			if (x - 1 >= 0)
 			{

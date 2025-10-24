@@ -3,73 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/23 14:21:54 by theo             ###   ########.fr       */
+/*   Updated: 2025/10/24 14:44:06 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	check_tab(char *tmp, t_fdf *fdf)
+void	fill_line(t_vec3 **vec3_tab, char **array, int vec3_tab_index)
 {
-	int	check_len;
-	int	y;
-	int	x;
+	int	index;
 
-	y = 0;
-	fdf->_heightmap = ft_split(tmp, '\n');
-	check_len = ft_strlen(fdf->_heightmap[0]);
-	while (fdf->_heightmap[y])
+	index = 0;
+	while (array[index])
 	{
-		x = 0;
-		if (ft_strlen(fdf->_heightmap[y]) != check_len)
-		{
-			free_tab(fdf->_heightmap);
-			ft_putstr_fd("[erreur] : la map doit etre rectangulaire", 0);
-			return (1);
-		}
-		while (fdf->_heightmap[y][x])
-		{
-			if (!ft_isdigit(fdf->_heightmap[y][x]))
-			{
-				free_tab(fdf->_heightmap);
-				ft_putstr_fd("[erreur] : une map ne peux pas contenir autre choses que des chiffres", 0);
-				return (1);
-			}
-			x ++;
-		}
-		y ++;
+		ft_printf ("%s\n", array[index]);
+		free (array[index]);
+		index ++;
 	}
-	return (0);
+	free (array);
 }
 
-int	parse_map(char *file_name, t_fdf *fdf)
+int	create_vec3_tab(t_vec3 **vec3_tab, char *file_name)
 {
+	char	**array;
 	char	*line;
-	char	*tmp;
 	int		fd;
+	int		index;
 
-	tmp = ft_calloc(1, sizeof(char));
-	if (!tmp)
-		return (1);
+	index = 0;
 	fd = open (file_name, O_RDONLY);
 	if (fd == -1)
 		return (1);
 	line = get_next_line(fd);
 	while (line)
 	{
-		tmp = ft_realloc(tmp, line);
+		array = ft_split(line, ' ');
+		if (!array)
+			return (0);
+		fill_line(vec3_tab, array, index);
 		free (line);
 		line = get_next_line(fd);
 	}
 	free (line);
-	if (!check_tab(tmp, fdf))
+	close (fd);
+	return (0);
+}
+
+int	get_height_size(char *file_name)
+{
+	char *line;
+	int	size;
+	int	fd;
+	
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	line = get_next_line(fd);
+	while (line)
 	{
-		free (tmp);
-		return (1);
+		size ++;
+		free (line);
+		line = get_next_line(fd);
 	}
-	free (tmp);
+	free (line);
+	close (fd);
+	return (size);
+}
+
+int	parse_map(char *file_name, t_fdf *fdf)
+{
+	int	size;
+
+	size = get_height_size(file_name);
+	// fdf->map = (t_vec3 **)malloc(sizeof(t_vec3 *) * size);
+	// if (!fdf->map)
+	// 	return (1);
+	if (!create_vec3_tab(fdf->map, file_name))
+		return (1);	
 	return (0);
 }

@@ -17,15 +17,6 @@ typedef struct image {
 	int		endian;
 }	t_image;
 
-typedef struct fdf {
-	void	*mlx;
-	void	*mlx_win;
-	t_image	*image;
-	char	**_heightmap;
-	int		win_width;
-	int		win_height;
-}	t_fdf;
-
 typedef struct vec2 {
 	float	x;
 	float	y;
@@ -36,6 +27,16 @@ typedef struct vec3 {
 	float	y;
 	float	z;
 }	t_vec3;
+
+typedef struct fdf {
+	t_vec3	**map;
+	void	*mlx;
+	void	*mlx_win;
+	t_image	*image;
+	char	**_heightmap;
+	int		win_width;
+	int		win_height;
+}	t_fdf;
 
 // parsing
 int	parse_map(char *file_name, t_fdf *fdf);
