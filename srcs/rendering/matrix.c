@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:00:26 by theo              #+#    #+#             */
-/*   Updated: 2025/10/24 14:03:15 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/26 01:24:33 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,23 @@ t_vec3 rotate_z(t_vec3 point, float angle)
 	new.y = point.x * sin(radian_angle) + point.y * cos (radian_angle);
 	new.z = point.z;
 	return (new);
+}
+
+t_vec3 **rotate_matrix(t_vec3 **vec3_tab, t_fdf *fdf, float angle, t_vec3 (*f)(t_vec3, float))
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < fdf->map_height)
+	{
+		x = 0;
+		while (x < fdf->map_width)
+		{
+			vec3_tab[y][x] = f(vec3_tab[y][x], angle);
+			x ++;
+		}
+		y ++;
+	}
+	return (vec3_tab);
 }

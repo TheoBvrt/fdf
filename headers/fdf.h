@@ -48,8 +48,9 @@ int	args_checker(int argc, char **argv);
 t_vec3	rotate_x(t_vec3 point, float angle);
 t_vec3	rotate_y(t_vec3 point, float angle);
 t_vec3	rotate_z(t_vec3 point, float angle);
+t_vec3 **rotate_matrix(t_vec3 **vec3_tab, t_fdf *fdf, float angle, t_vec3 (*f)(t_vec3, float));
 void	my_mlx_put_pixel(t_image *image, int x, int y, int color);
-void	fdf_rendering(t_fdf fdf);
+void	fdf_rendering(t_fdf *fdf);
 
 // utils
 void	free_tab(char **tab);
