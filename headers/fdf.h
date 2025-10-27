@@ -8,6 +8,15 @@
 # include "stdio.h"
 
 # define DEG_TO_RADIAN(x) ((x) * M_PI / 180)
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
+# define LEFT_CLICK 1
+# define RIGHT_CLICK 2
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
+# define UP_ARROW 65362
+# define DOWN_ARROW 65364
+
 
 typedef struct image {
 	void	*img;
@@ -51,6 +60,8 @@ t_vec3	rotate_z(t_vec3 point, float angle);
 t_vec3 **rotate_matrix(t_vec3 **vec3_tab, t_fdf *fdf, float angle, t_vec3 (*f)(t_vec3, float));
 void	my_mlx_put_pixel(t_image *image, int x, int y, int color);
 void	fdf_rendering(t_fdf *fdf);
+int		on_keydown(int keycode, t_fdf *fdf);
+int		on_mouseDown(int keycode, int x, int y, t_fdf *fdf);
 
 // utils
 void	free_tab(char **tab);

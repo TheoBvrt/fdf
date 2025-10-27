@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/26 01:24:45 by theo             ###   ########.fr       */
+/*   Updated: 2025/10/27 11:41:04 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	cricle_drawing(t_fdf *fdf, t_vec2 origin)
 	double			y1;
 	double			angle;
 	float			radius;
-	radius = 2;
+	radius = 1;
 
 	while (radius >= 0)
 	{
@@ -59,7 +59,6 @@ void	cricle_drawing(t_fdf *fdf, t_vec2 origin)
 		radius --;
 	}
 }
-
 
 void	fdf_rendering(t_fdf *fdf)
 {
@@ -77,13 +76,9 @@ void	fdf_rendering(t_fdf *fdf)
 	y = 0;
 
 	float angle = 0.523599;
-
 	float offset_x = (fdf->win_width / 2);
 	float offset_y = (fdf->win_height / 2) - ((fdf->map_height / 2) * scale);
-
-	fdf->map = rotate_matrix(fdf->map, fdf, 20, rotate_x);
-
-
+	fdf->map = rotate_matrix(fdf->map, fdf, 0, rotate_x);
 	while (y < fdf->map_height)
 	{
 		x = 0;
@@ -101,7 +96,7 @@ void	fdf_rendering(t_fdf *fdf)
 				end_line.y = fdf->map[y][x - 1].x  * sin(angle) + fdf->map[y][x - 1].y * sin(angle + 2) + fdf->map[y][x - 1].z * sin(angle - 2);
 				tmp2.x = (end_line.x * scale) + offset_x;
 				tmp2.y = (end_line.y * scale) + offset_y;
-				dda_line(fdf, tmp, tmp2);	
+				dda_line(fdf, tmp, tmp2);
 			}
 
 			if (y - 1 >= 0)

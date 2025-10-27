@@ -1,6 +1,6 @@
 NAME = fdf
 SRCS = ./srcs/main.c ./srcs/parser/error.c ./srcs/parser/map_parser.c ./srcs/utils/free_tab.c ./srcs/rendering/put_pixel.c \
-./srcs/rendering/render.c ./srcs/rendering/matrix.c
+./srcs/rendering/render.c ./srcs/rendering/matrix.c ./srcs/rendering/mlx_events.c
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
