@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:46:15 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/27 11:43:35 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:11:19 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,31 @@
 int	on_keydown(int keycode, t_fdf *fdf)
 {
 	if (keycode == UP_ARROW)
-		ft_printf("ARROW_UP");
+		rotate_matrix(fdf->map, fdf, 5, rotate_x);
 	if (keycode == DOWN_ARROW)
-		ft_printf("DOWN_ARROW");
+		rotate_matrix(fdf->map, fdf, -5, rotate_x);
 	if (keycode == LEFT_ARROW)
-		ft_printf("LEFT_ARROW");
+		rotate_matrix(fdf->map, fdf, -5, rotate_y);
 	if (keycode == RIGHT_ARROW)
-		ft_printf("RIGHT_ARROW");
+		rotate_matrix(fdf->map, fdf, 5, rotate_y);
+	if (keycode == W_KEY)
+		fdf->settings->offset_y -= 10;
+	if (keycode == S_KEY)
+		fdf->settings->offset_y += 10;
+	if (keycode == A_KEY)
+		fdf->settings->offset_x -= 10;
+	if (keycode == D_KEY)
+		fdf->settings->offset_x += 10;
+	fdf_rendering(fdf);
 	return (1);
 }
 
 int	on_mouseDown(int keycode, int x, int y, t_fdf *fdf)
 {
 	if (keycode == SCROLL_UP)
-		ft_printf ("SCROLL_UP");
-	if (keycode == SCROLL_DOWN)
-		ft_printf ("SCROLL_DOWN");
+		fdf->settings->scale += 2;
+	if (keycode == SCROLL_DOWN && fdf->settings->scale > 5)
+		fdf->settings->scale -= 2;
+	fdf_rendering(fdf);
 	return (1);
 }
