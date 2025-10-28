@@ -6,13 +6,13 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/27 17:14:13 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:01:40 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fdf.h"
 
-void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end)
+static void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end)
 {
 	int dx = end.x - start.x;
 	int dy = end.y - start.y;
@@ -36,7 +36,7 @@ void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end)
 	}
 }
 
-void	clear_screen(t_fdf *fdf)
+static void	clear_screen(t_fdf *fdf)
 {
 	int	y;
 	int	x;
@@ -59,6 +59,15 @@ void	clear_screen(t_fdf *fdf)
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->image->img, 0, 0);
 }
 
+static t_vec2	isometric(t_vec3 vec3)
+{
+	t_vec2	pos;
+
+	pos.x = vec3.x * cos(ANGLE) + vec3.y * cos(ANGLE + 2) + vec3.z * cos(ANGLE - 2);
+	pos.y = vec3.x * sin(ANGLE) + vec3.y * sin(ANGLE + 2) + vec3.z * sin(ANGLE - 2);
+	return (pos);
+}
+
 void	fdf_rendering(t_fdf *fdf)
 {
 	t_vec2	screen_pos;
@@ -75,15 +84,12 @@ void	fdf_rendering(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->map_width)
 		{
-			screen_pos.x = fdf->map[y][x].x * cos(ANGLE) + fdf->map[y][x].y * cos(ANGLE + 2) + fdf->map[y][x].z * cos(ANGLE - 2);
-			screen_pos.y = fdf->map[y][x].x  * sin(ANGLE) + fdf->map[y][x].y * sin(ANGLE + 2) + fdf->map[y][x].z * sin(ANGLE - 2);
-			
+			screen_pos = isometric(fdf->map[y][x]);
 			tmp.x = (screen_pos.x * fdf->settings->scale) + fdf->settings->offset_x;
 			tmp.y = (screen_pos.y * fdf->settings->scale) + fdf->settings->offset_y;
 			if (x - 1 >= 0)
 			{
-				end_line.x = fdf->map[y][x - 1].x * cos(ANGLE) + fdf->map[y][x - 1].y * cos(ANGLE + 2) + fdf->map[y][x - 1].z * cos(ANGLE - 2);
-				end_line.y = fdf->map[y][x - 1].x  * sin(ANGLE) + fdf->map[y][x - 1].y * sin(ANGLE + 2) + fdf->map[y][x - 1].z * sin(ANGLE - 2);
+				end_line = isometric(fdf->map[y][x - 1]);
 				tmp2.x = (end_line.x * fdf->settings->scale) + fdf->settings->offset_x;
 				tmp2.y = (end_line.y * fdf->settings->scale) + fdf->settings->offset_y;
 				dda_line(fdf, tmp, tmp2);
@@ -91,8 +97,7 @@ void	fdf_rendering(t_fdf *fdf)
 
 			if (y - 1 >= 0)
 			{
-				end_line.x = fdf->map[y - 1][x].x * cos(ANGLE) + fdf->map[y - 1][x].y * cos(ANGLE + 2) + fdf->map[y - 1][x].z * cos(ANGLE - 2);
-				end_line.y = fdf->map[y - 1][x].x  * sin(ANGLE) + fdf->map[y - 1][x].y * sin(ANGLE + 2) + fdf->map[y - 1][x].z * sin(ANGLE - 2);
+				end_line = isometric(fdf->map[y - 1][x]);
 				tmp2.x = (end_line.x * fdf->settings->scale) + fdf->settings->offset_x;
 				tmp2.y = (end_line.y * fdf->settings->scale) + fdf->settings->offset_y;
 				dda_line(fdf, tmp, tmp2);
