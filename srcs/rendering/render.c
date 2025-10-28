@@ -6,13 +6,13 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/28 13:27:07 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:40:56 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fdf.h"
 
-static void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end)
+static void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end, int color_b)
 {
 	int dx = end.x - start.x;
 	int dy = end.y - start.y;
@@ -29,7 +29,7 @@ static void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end)
 	int index = 0;
 	while (index <= steps)
 	{
-		my_mlx_put_pixel(fdf->image, X, Y,  0x2e808a);
+		my_mlx_put_pixel(fdf->image, X, Y, color_b);
 		X += Xinc;
 		Y += Yinc;
 		index ++;
@@ -87,13 +87,13 @@ void	fdf_rendering(t_fdf *fdf)
 			if (x - 1 >= 0)
 			{
 				end_line = isometric(fdf->map[y][x - 1], fdf);
-				dda_line(fdf, screen_pos, end_line);
+				dda_line(fdf, screen_pos, end_line, fdf->map[y][x -1].color);
 			}
 
 			if (y - 1 >= 0)
 			{
 				end_line = isometric(fdf->map[y - 1][x], fdf);
-				dda_line(fdf, screen_pos, end_line);
+				dda_line(fdf, screen_pos, end_line, fdf->map[y - 1][x].color);
 			}
 
 			x ++;

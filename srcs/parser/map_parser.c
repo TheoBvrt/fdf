@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/28 11:35:34 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:33:02 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	get_count_of_array(char **array)
 
 int	fill_line(t_fdf *fdf, char **array, int y)
 {
+	char	**tmp;
+	char	*nl;
 	int		i;
 
 	i = get_count_of_array(array);
@@ -34,10 +36,16 @@ int	fill_line(t_fdf *fdf, char **array, int y)
 		fdf->map_width = i;
 	i = 0; 
 	while (array[i])
-	{		
+	{
+		tmp = ft_split(array[i], ',');
+		nl = ft_strchr(tmp[1], '\n');
+		if (nl)
+			*nl = '\0';
 		fdf->map[y][i].x = i;
 		fdf->map[y][i].y = y;
-		fdf->map[y][i].z = (float)ft_atoi(array[i]);
+		fdf->map[y][i].z = (float)ft_atoi(tmp[0]) * 0.2;
+		fdf->map[y][i].color = get_color(tmp[1]);
+		free_tab(tmp);
 		free (array[i]);
 		i ++;
 	}

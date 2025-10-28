@@ -8,6 +8,7 @@
 # include "stdio.h"
 
 # define DEG_TO_RADIAN(x) ((x) * M_PI / 180)
+# define DEFAULT_COLOR 0x2e808a
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 # define LEFT_CLICK 1
@@ -22,8 +23,8 @@
 # define S_KEY 115
 
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 3880
+# define HEIGHT 2160
 # define ANGLE 0.523599
 
 
@@ -68,6 +69,8 @@ typedef struct fdf {
 // parsing
 int	parse_map(char *file_name, t_fdf *fdf);
 int	args_checker(int argc, char **argv);
+int ahtoi(char *str);
+int	get_color(char *str);
 
 // rendering
 t_vec3	rotate_x(t_vec3 point, float angle);

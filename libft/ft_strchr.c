@@ -17,6 +17,8 @@ char	*ft_strchr(const char *string, int searchChar)
 	size_t	index;
 
 	index = 0;
+	if (!string)
+		return (NULL);
 	while (string[index] != (unsigned char)searchChar)
 	{
 		if (string[index] == '\0')

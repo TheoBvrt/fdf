@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:46:15 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/28 13:20:09 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:03:39 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	on_mouseDown(int keycode, int x, int y, t_fdf *fdf)
 {
 	if (keycode == SCROLL_UP)
 		fdf->settings->scale += 2;
-	if (keycode == SCROLL_DOWN && fdf->settings->scale > 5)
+	if (keycode == SCROLL_DOWN && fdf->settings->scale >= 2)
 		fdf->settings->scale -= 2;
 	fdf_rendering(fdf);
 	return (1);
