@@ -44,6 +44,7 @@ typedef struct vec3 {
 	float	x;
 	float	y;
 	float	z;
+	int		color;
 }	t_vec3;
 
 typedef struct render_settings {
