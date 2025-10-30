@@ -80,6 +80,7 @@ t_vec3 **rotate_matrix(t_vec3 **vec3_tab, t_fdf *fdf, float angle, t_vec3 (*f)(t
 void	my_mlx_put_pixel(t_image *image, int x, int y, int color);
 void	fdf_rendering(t_fdf *fdf);
 int		on_keydown(int keycode, t_fdf *fdf);
+t_vec2	isometric(t_vec3 vec3, t_fdf *fdf);
 int		on_mouseDown(int keycode, int x, int y, t_fdf *fdf);
 
 // utils

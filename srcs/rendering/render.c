@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/28 16:40:56 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:33:26 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,6 @@ static void	clear_screen(t_fdf *fdf)
 		y ++;
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->image->img, 0, 0);
-}
-
-static t_vec2	isometric(t_vec3 vec3, t_fdf *fdf)
-{
-	t_vec2	pos;
-
-	pos.x = vec3.x * cos(ANGLE) + vec3.y * cos(ANGLE + 2) + vec3.z * cos(ANGLE - 2);
-	pos.y = vec3.x * sin(ANGLE) + vec3.y * sin(ANGLE + 2) + vec3.z * sin(ANGLE - 2);
-	pos.x = (pos.x * fdf->settings->scale) + fdf->settings->offset_x;
-	pos.y = (pos.y * fdf->settings->scale) + fdf->settings->offset_y;
-	return (pos);
 }
 
 void	fdf_rendering(t_fdf *fdf)
