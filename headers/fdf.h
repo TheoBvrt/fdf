@@ -29,9 +29,12 @@
 # endif
 
 # ifndef CONSTANT
-#  define WIDTH 1920
-#  define HEIGHT 1080
+#  define WIDTH 1280
+#  define HEIGHT 720
 #  define ANGLE 0.523599
+#  define ISOMETRIC 1
+#  define ORTHOGRAPHIC 2
+#  define SPHERIC 3
 # endif
 
 typedef struct image {
@@ -61,6 +64,7 @@ typedef struct render_settings {
 	int		roll;
 	int		pitch;
 	int		yaw;
+	int		projections;
 	float	height;
 }	t_render_settings;
 
@@ -90,7 +94,7 @@ t_vec3 **rotate_matrix(t_vec3 **vec3_tab, t_fdf *fdf, float angle, t_vec3 (*f)(t
 void	my_mlx_put_pixel(t_image *image, int x, int y, int color);
 void	fdf_rendering(t_fdf *fdf);
 int		on_keydown(int keycode, t_fdf *fdf);
-t_vec2	isometric(t_vec3 vec3, t_fdf *fdf);
+t_vec2	projection(t_vec3 vec3, t_fdf *fdf, int index[2]);
 int		on_mouseDown(int keycode, int x, int y, t_fdf *fdf);
 void	reset_rotation(t_fdf *fdf);
 int	on_cross_click(t_fdf *fdf);

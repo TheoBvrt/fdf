@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/03 14:55:46 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/04 00:50:03 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,30 +74,18 @@ void	fdf_rendering(t_fdf *fdf)
 		while (x < fdf->map_width)
 		{
 			tmp = fdf->map[y][x];
-			tmp.z *= fdf->settings->height;
-			tmp = rotate_x(tmp, fdf->settings->roll);
-			tmp = rotate_y(tmp, fdf->settings->pitch);
-			tmp = rotate_z(tmp, fdf->settings->yaw);
-			screen_pos = isometric(tmp, fdf);
+			screen_pos = projection(tmp, fdf, (int[]) {y, x});
 			if (x - 1 >= 0)
 			{
 				tmp = fdf->map[y][x - 1];
-				tmp.z *= fdf->settings->height;
-				tmp = rotate_x(tmp, fdf->settings->roll);
-				tmp = rotate_y(tmp, fdf->settings->pitch);
-				tmp = rotate_z(tmp, fdf->settings->yaw);
-				end_line = isometric(tmp, fdf);
+				end_line = projection(tmp, fdf, (int[]) {y, x - 1});
 				dda_line(fdf, screen_pos, end_line, tmp.color);
 			}
 
 			if (y - 1 >= 0)
 			{
 				tmp = fdf->map[y - 1][x];
-				tmp.z *= fdf->settings->height;
-				tmp = rotate_x(tmp, fdf->settings->roll);
-				tmp = rotate_y(tmp, fdf->settings->pitch);
-				tmp = rotate_z(tmp, fdf->settings->yaw);
-				end_line = isometric(tmp, fdf);
+				end_line = projection(tmp, fdf, (int[]) {y - 1, x});
 				dda_line(fdf, screen_pos, end_line, tmp.color);
 			}
 

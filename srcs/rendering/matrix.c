@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:00:26 by theo              #+#    #+#             */
-/*   Updated: 2025/11/03 13:51:27 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/04 00:46:38 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,6 @@ t_vec3 rotate_z(t_vec3 point, float angle)
 	new.z = point.z;
 	new.color = point.color;
 	return (new);
-}
-
-t_vec3 **rotate_matrix(t_vec3 **vec3_tab, t_fdf *fdf, float angle, t_vec3 (*f)(t_vec3, float))
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < fdf->map_height)
-	{
-		x = 0;
-		while (x < fdf->map_width)
-		{
-			vec3_tab[y][x] = f(vec3_tab[y][x], angle);
-			x ++;
-		}
-		y ++;
-	}
-	return (vec3_tab);
 }
 
 void	reset_rotation(t_fdf *fdf)
