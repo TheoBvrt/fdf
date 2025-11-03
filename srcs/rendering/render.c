@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/30 17:33:26 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:04:29 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	fdf_rendering(t_fdf *fdf)
 {
 	t_vec2	screen_pos;
 	t_vec2	end_line;
+	t_vec3 tmp;
 	int				y;
 	int				x;
 	y = 0;
@@ -72,17 +73,32 @@ void	fdf_rendering(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->map_width)
 		{
-			screen_pos = isometric(fdf->map[y][x], fdf);
+			tmp = fdf->map[y][x];
+			tmp.z *= fdf->settings->height;
+			tmp = rotate_x(tmp, fdf->settings->roll);
+			tmp = rotate_y(tmp, fdf->settings->pitch);
+			tmp = rotate_z(tmp, fdf->settings->yaw);
+			screen_pos = isometric(tmp, fdf);
 			if (x - 1 >= 0)
 			{
-				end_line = isometric(fdf->map[y][x - 1], fdf);
-				dda_line(fdf, screen_pos, end_line, fdf->map[y][x -1].color);
+				tmp = fdf->map[y][x - 1];
+				tmp.z *= fdf->settings->height;
+				tmp = rotate_x(tmp, fdf->settings->roll);
+				tmp = rotate_y(tmp, fdf->settings->pitch);
+				tmp = rotate_z(tmp, fdf->settings->yaw);
+				end_line = isometric(tmp, fdf);
+				dda_line(fdf, screen_pos, end_line, tmp.color);
 			}
 
 			if (y - 1 >= 0)
 			{
-				end_line = isometric(fdf->map[y - 1][x], fdf);
-				dda_line(fdf, screen_pos, end_line, fdf->map[y - 1][x].color);
+				tmp = fdf->map[y - 1][x];
+				tmp.z *= fdf->settings->height;
+				tmp = rotate_x(tmp, fdf->settings->roll);
+				tmp = rotate_y(tmp, fdf->settings->pitch);
+				tmp = rotate_z(tmp, fdf->settings->yaw);
+				end_line = isometric(tmp, fdf);
+				dda_line(fdf, screen_pos, end_line, tmp.color);
 			}
 
 			x ++;

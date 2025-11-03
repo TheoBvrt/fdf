@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:46:15 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/28 16:03:39 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:29:49 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	on_keydown(int keycode, t_fdf *fdf)
 {
 	if (keycode == UP_ARROW)
-		rotate_matrix(fdf->map, fdf, 5, rotate_x);
+		fdf->settings->roll += 5;	
 	if (keycode == DOWN_ARROW)
-		rotate_matrix(fdf->map, fdf, -5, rotate_x);
+		fdf->settings->roll -= 5;
 	if (keycode == LEFT_ARROW)
-		rotate_matrix(fdf->map, fdf, -5, rotate_y);
+		fdf->settings->pitch -= 5;
 	if (keycode == RIGHT_ARROW)
-		rotate_matrix(fdf->map, fdf, 5, rotate_y);
+		fdf->settings->pitch += 5;
 	if (keycode == W_KEY)
 		fdf->settings->offset_y -= 10;
 	if (keycode == S_KEY)
@@ -30,6 +30,14 @@ int	on_keydown(int keycode, t_fdf *fdf)
 		fdf->settings->offset_x -= 10;
 	if (keycode == D_KEY)
 		fdf->settings->offset_x += 10;
+	if (keycode == MINUS_KEY)
+		fdf->settings->height -= 0.1;	
+	if (keycode == PLUS_KEY)
+		fdf->settings->height += 0.1;
+	if (keycode == ESCAPE)
+		clean_program(fdf);
+	if (keycode == R_KEY)
+		reset_rotation(fdf);
 	fdf_rendering(fdf);
 	return (1);
 }
@@ -39,7 +47,7 @@ int	on_mouseDown(int keycode, int x, int y, t_fdf *fdf)
 	if (keycode == SCROLL_UP)
 		fdf->settings->scale += 2;
 	if (keycode == SCROLL_DOWN && fdf->settings->scale >= 2)
-		fdf->settings->scale -= 2;
+		fdf->settings->scale -= 2;;
 	fdf_rendering(fdf);
 	return (1);
 }

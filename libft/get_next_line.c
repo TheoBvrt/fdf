@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 11:24:40 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/20 14:36:42 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:46:27 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ char	*_read_file(char *buffer, int fd, char *stash)
 	free (stash);
 	while (state > 0 && !char_isfind(buffer, '\n'))
 	{
-		ft_bzero(buffer, 10 + 1);
-		state = read(fd, buffer, 10);
+		ft_bzero(buffer, 400 + 1);
+		state = read(fd, buffer, 400);
 		if (state == -1)
 			return (free_exit(&cache, NULL));
 		cache = ft_realloc(cache, buffer);
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (NULL);
-	buffer = ft_calloc(10 + 1, sizeof(char));
+	buffer = ft_calloc(400 + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	if (!char_isfind(cache, '\n'))

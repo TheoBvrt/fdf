@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/28 17:30:48 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:51:28 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,16 @@ int	main(int argc, char **argv)
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, 
 		&image.line_length, &image.endian);
 	
-	render_settings.offset_x = (WIDTH / 2);
-	render_settings.offset_y = (HEIGHT / 2);
-
 	fdf.settings = &render_settings;
+	reset_rotation(&fdf);
 	fdf.image = &image;
 	center_point(&fdf);
 
 	fdf_rendering(&fdf);
 	
-	mlx_hook(fdf.mlx_win, 2, (1L<<0), on_keydown, &fdf);
+	mlx_hook(fdf.mlx_win, 3, (1L<<1), on_keydown, &fdf);
 	mlx_hook(fdf.mlx_win, 4, (1L<<2), on_mouseDown, &fdf);
 	
 	mlx_loop(fdf.mlx);
-	//free_vec3_tab(fdf.map, fdf.map_height);
 	exit (0);
 }

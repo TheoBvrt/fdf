@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:00:26 by theo              #+#    #+#             */
-/*   Updated: 2025/10/30 17:34:58 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:56:10 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,14 @@ t_vec3 **rotate_matrix(t_vec3 **vec3_tab, t_fdf *fdf, float angle, t_vec3 (*f)(t
 		y ++;
 	}
 	return (vec3_tab);
+}
+
+void	reset_rotation(t_fdf *fdf)
+{
+	fdf->settings->roll = 0;
+	fdf->settings->pitch = 0;
+	fdf->settings->yaw = 0;
+	fdf->settings->offset_x = (WIDTH / 2);
+	fdf->settings->offset_y = (HEIGHT / 2);
+	fdf->settings->height = 0.3;
 }
