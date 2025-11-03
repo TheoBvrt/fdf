@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:00:26 by theo              #+#    #+#             */
-/*   Updated: 2025/11/03 10:56:10 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 13:51:27 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	reset_rotation(t_fdf *fdf)
 	fdf->settings->roll = 0;
 	fdf->settings->pitch = 0;
 	fdf->settings->yaw = 0;
-	fdf->settings->offset_x = (WIDTH / 2);
+	fdf->settings->offset_x = (WIDTH / 3) + WIDTH * 0.25;
 	fdf->settings->offset_y = (HEIGHT / 2);
 	fdf->settings->height = 0.3;
 }

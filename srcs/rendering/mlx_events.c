@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:46:15 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/03 11:29:49 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 13:11:08 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,9 @@ int	on_mouseDown(int keycode, int x, int y, t_fdf *fdf)
 		fdf->settings->scale -= 2;;
 	fdf_rendering(fdf);
 	return (1);
+}
+
+int	on_cross_click(t_fdf *fdf)
+{
+	clean_program(fdf);
 }

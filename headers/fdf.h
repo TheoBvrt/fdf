@@ -7,30 +7,32 @@
 # include "math.h"
 # include "stdio.h"
 
-# define DEG_TO_RADIAN(x) ((x) * M_PI / 180)
-# define DEFAULT_COLOR 0x2e808a
-# define ESCAPE 65307
-# define SCROLL_UP 4
-# define SCROLL_DOWN 5
-# define LEFT_CLICK 1
-# define RIGHT_CLICK 2
-# define LEFT_ARROW 65361
-# define RIGHT_ARROW 65363
-# define UP_ARROW 65362
-# define DOWN_ARROW 65364
-# define A_KEY 97
-# define D_KEY 100
-# define W_KEY 119
-# define S_KEY 115
-# define R_KEY 114
-# define MINUS_KEY 45
-# define PLUS_KEY 61
+# ifndef KEYCODE
+#  define DEG_TO_RADIAN(x) ((x) * M_PI / 180)
+#  define DEFAULT_COLOR 0x2e808a
+#  define ESCAPE 65307
+#  define SCROLL_UP 4
+#  define SCROLL_DOWN 5
+#  define LEFT_CLICK 1
+#  define RIGHT_CLICK 2
+#  define LEFT_ARROW 65361
+#  define RIGHT_ARROW 65363
+#  define UP_ARROW 65362
+#  define DOWN_ARROW 65364
+#  define A_KEY 97
+#  define D_KEY 100
+#  define W_KEY 119
+#  define S_KEY 115
+#  define R_KEY 114
+#  define MINUS_KEY 45
+#  define PLUS_KEY 61
+# endif
 
-
-# define WIDTH 1920
-# define HEIGHT 1080
-# define ANGLE 0.523599
-
+# ifndef CONSTANT
+#  define WIDTH 1920
+#  define HEIGHT 1080
+#  define ANGLE 0.523599
+# endif
 
 typedef struct image {
 	void	*img;
@@ -91,6 +93,8 @@ int		on_keydown(int keycode, t_fdf *fdf);
 t_vec2	isometric(t_vec3 vec3, t_fdf *fdf);
 int		on_mouseDown(int keycode, int x, int y, t_fdf *fdf);
 void	reset_rotation(t_fdf *fdf);
+int	on_cross_click(t_fdf *fdf);
+void	draw_interface(t_fdf *fdf);
 
 // utils
 void	free_tab(char **tab);

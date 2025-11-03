@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/03 11:04:29 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:55:46 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end, int color_b)
 	int steps = abs(dy);
 	if (abs(dx) > abs(dy))
 		steps = abs(dx);
-	
+
 	float Xinc = dx / (float)steps;
 	float Yinc = dy / (float)steps;
 
@@ -51,7 +51,7 @@ static void	clear_screen(t_fdf *fdf)
 		x = 0;
 		while (x <= WIDTH)
 		{
-			my_mlx_put_pixel(fdf->image, x, y, 0x061021);
+			my_mlx_put_pixel(fdf->image, x, y, 0x151515);
 			x ++;
 		}
 		y ++;
@@ -105,5 +105,6 @@ void	fdf_rendering(t_fdf *fdf)
 		}
 		y ++;
 	}
+	draw_interface(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->image->img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/03 11:51:28 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:56:03 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int argc, char **argv)
 	
 	mlx_hook(fdf.mlx_win, 3, (1L<<1), on_keydown, &fdf);
 	mlx_hook(fdf.mlx_win, 4, (1L<<2), on_mouseDown, &fdf);
+	mlx_hook(fdf.mlx_win, 17, (0L), on_cross_click, &fdf);
 	
 	mlx_loop(fdf.mlx);
 	exit (0);
