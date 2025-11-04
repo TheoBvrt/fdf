@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/04 18:13:26 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/04 23:26:16 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ int	main(int argc, char **argv)
 		return(1);
 	if (!parse_map(argv[1], &fdf))
 		return (1);
-	fdf.file_name = "FILE.FDF";
+	fdf.data_interface.file_name = argv[1];
 	fdf.mlx = mlx_init();
 	fdf.mlx_win = mlx_new_window(fdf.mlx, fdf.win_width, fdf.win_height, "FdF");
 	image.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, 
 		&image.line_length, &image.endian);
 	fdf.settings = &render_settings;
+	set_interface_data(&fdf);
 	reset_rotation(&fdf);
 	fdf.image = &image;
 	center_point(&fdf);

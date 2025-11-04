@@ -55,15 +55,6 @@
 # define TITLE_FONT "-misc-fixed-medium-r-normal--24-230-75-75-c-120-iso8859-1"
 # endif
 
-
-typedef struct image {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_image;
-
 typedef struct vec2 {
 	float	x;
 	float	y;
@@ -75,6 +66,23 @@ typedef struct vec3 {
 	float	z;
 	int		color;
 }	t_vec3;
+
+typedef struct data_interface {
+	char	*file_name;
+	char	*map_size;
+	char	*height_scale;
+	char	*scale;
+	char	*angle;
+}	t_data_interface;
+
+typedef struct image {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image;
+
 
 typedef struct render_settings {
 	int		scale;
@@ -91,9 +99,9 @@ typedef struct fdf {
 	t_vec3				**map;
 	t_image				*image;
 	t_render_settings	*settings;
+	t_data_interface	data_interface;
 	void				*mlx;
 	void				*mlx_win;
-	char				*file_name;
 	int					map_height;
 	int					map_width;
 	int					win_width;
@@ -105,6 +113,8 @@ int	parse_map(char *file_name, t_fdf *fdf);
 int	args_checker(int argc, char **argv);
 int ahtoi(char *str);
 int	get_color(char *str);
+void	set_interface_data(t_fdf *fdf);
+void	update_interface_data(t_fdf *fdf);
 
 // rendering
 t_vec3	rotate_x(t_vec3 point, float angle);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:18:52 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/03 12:43:15 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/04 23:36:02 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ void	clean_program(t_fdf *fdf)
 	mlx_destroy_display(fdf->mlx);
 	free(fdf->mlx);
 	free_vec3_tab(fdf->map, fdf->map_height);
+	free(fdf->data_interface.map_size);
+	free(fdf->data_interface.angle);
 	exit(1);
 }
