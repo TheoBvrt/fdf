@@ -29,13 +29,32 @@
 # endif
 
 # ifndef CONSTANT
-#  define WIDTH 1280
-#  define HEIGHT 720
+#  define WIDTH 1920
+#  define HEIGHT 1080
 #  define ANGLE 0.523599
 #  define ISOMETRIC 1
 #  define ORTHOGRAPHIC 2
 #  define SPHERIC 3
 # endif
+
+# ifndef COLOR
+#  define PROJECTION_BACKGROUND 0x151515
+#  define INTERFACE_BACKGROUND 0x202020
+#  define MAIN_COLOR 0xf2f0f0
+#  define ACCENT_COLOR 0xfc9803
+# endif
+
+#ifndef	MARGINS
+#  define TITLE_X WIDTH * 0.026
+#  define TITLE_Y HEIGHT * 0.05
+#  define CATEGORIE_X_MARGIN WIDTH * 0.05
+#  define SUB_ITEM_MARGIN WIDTH * 0.12
+# endif
+
+# ifndef FONT
+# define TITLE_FONT "-misc-fixed-medium-r-normal--24-230-75-75-c-120-iso8859-1"
+# endif
+
 
 typedef struct image {
 	void	*img;
@@ -74,6 +93,7 @@ typedef struct fdf {
 	t_render_settings	*settings;
 	void				*mlx;
 	void				*mlx_win;
+	char				*file_name;
 	int					map_height;
 	int					map_width;
 	int					win_width;
@@ -99,6 +119,8 @@ int		on_mouseDown(int keycode, int x, int y, t_fdf *fdf);
 void	reset_rotation(t_fdf *fdf);
 int	on_cross_click(t_fdf *fdf);
 void	draw_interface(t_fdf *fdf);
+
+void	put_string(t_fdf *fdf);
 
 // utils
 void	free_tab(char **tab);
