@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:00:26 by theo              #+#    #+#             */
-/*   Updated: 2025/11/05 15:30:25 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:21:43 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec3	rotate_x(t_vec3 point, float angle)
 	return (new);
 }
 
-t_vec3 rotate_y(t_vec3 point, float angle)
+t_vec3	rotate_y(t_vec3 point, float angle)
 {
 	t_vec3	new;
 	float	radian_angle;
@@ -38,7 +38,7 @@ t_vec3 rotate_y(t_vec3 point, float angle)
 	return (new);
 }
 
-t_vec3 rotate_z(t_vec3 point, float angle)
+t_vec3	rotate_z(t_vec3 point, float angle)
 {
 	t_vec3	new;
 	float	radian_angle;

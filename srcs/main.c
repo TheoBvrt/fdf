@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 15:45:44 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:22:54 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	t_render_settings	render_settings;
 
 	render_settings.scale = 30;
-	render_settings.projections = SPHERIC;
+	render_settings.projections = ORTHOGRAPHIC;
 	fdf.win_width = WIDTH;
 	fdf.win_height = HEIGHT;;
 	fdf.map = NULL;
@@ -57,11 +57,11 @@ int	main(int argc, char **argv)
 	reset_settings(&fdf);
 	fdf.image = &image;
 	center_point(&fdf);
-
+	create_buton(&fdf);
 	fdf_rendering(&fdf);
 	
 	mlx_hook(fdf.mlx_win, 3, (1L<<1), on_keydown, &fdf);
-	mlx_hook(fdf.mlx_win, 4, (1L<<2), on_mouseDown, &fdf);
+	mlx_hook(fdf.mlx_win, 4, (1L<<2), on_mouse_down, &fdf);
 	mlx_hook(fdf.mlx_win, 17, (0L), on_cross_click, &fdf);
 	mlx_loop(fdf.mlx);
 	exit (0);

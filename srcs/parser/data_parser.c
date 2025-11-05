@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 22:13:23 by theo              #+#    #+#             */
-/*   Updated: 2025/11/05 15:46:56 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:14:37 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ static char	*format_map_size(int map_height, int map_width)
 
 void	set_interface_data(t_fdf *fdf)
 {
-	fdf->data_interface.file_name = format_file_name(fdf->data_interface.file_name);
-	fdf->data_interface.map_size = format_map_size(fdf->map_height, fdf->map_width);
+	fdf->data_interface.file_name
+		= format_file_name(fdf->data_interface.file_name);
+	fdf->data_interface.map_size
+		= format_map_size(fdf->map_height, fdf->map_width);
 	fdf->data_interface.angle = NULL;
 	fdf->data_interface.height_scale = NULL;
 	fdf->data_interface.scale = NULL;

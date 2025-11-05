@@ -6,11 +6,11 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 23:02:39 by theo              #+#    #+#             */
-/*   Updated: 2025/11/05 15:27:09 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:14:02 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fdf.h"
+#include "fdf.h"
 
 static char	*concat_float_part(char *integer, char *decimal, int negative)
 {
@@ -29,7 +29,7 @@ static char	*concat_float_part(char *integer, char *decimal, int negative)
 	return (str);
 }
 
-static char *ft_ftoa(float number)
+static char	*ft_ftoa(float number)
 {
 	char	*str;
 	char	*integer;
@@ -54,7 +54,7 @@ static char *ft_ftoa(float number)
 	return (str);
 }
 
-static char *concat_angle(char *roll, char *pitch, char *yaw)
+static char	*concat_angle(char *roll, char *pitch, char *yaw)
 {
 	char	*str;
 	size_t	size;
@@ -105,9 +105,10 @@ void	update_interface_data(t_fdf *fdf)
 	free (fdf->data_interface.scale);
 	free (fdf->data_interface.offsets);
 	fdf->data_interface.angle = format_angle(fdf->settings->roll,
-		fdf->settings->pitch, fdf->settings->yaw);
+			fdf->settings->pitch, fdf->settings->yaw);
 	fdf->data_interface.height_scale = ft_ftoa(fdf->settings->height);
 	fdf->data_interface.scale = ft_strjoin("x", tmp);
-	fdf->data_interface.offsets = format_offsets(fdf->settings->offset_x, fdf->settings->offset_y);
+	fdf->data_interface.offsets = format_offsets(fdf->settings->offset_x,
+			fdf->settings->offset_y);
 	free (tmp);
 }

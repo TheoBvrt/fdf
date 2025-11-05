@@ -14,7 +14,7 @@
 #  define SCROLL_UP 4
 #  define SCROLL_DOWN 5
 #  define LEFT_CLICK 1
-#  define RIGHT_CLICK 2
+#  define RIGHT_CLICK 3
 #  define LEFT_ARROW 65361
 #  define RIGHT_ARROW 65363
 #  define UP_ARROW 65362
@@ -42,6 +42,7 @@
 #  define INTERFACE_BACKGROUND 0x202020
 #  define MAIN_COLOR 0xf2f0f0
 #  define ACCENT_COLOR 0xfc9803
+#  define BUTTON_BACKGROUND 0x302f2f
 # endif
 
 #ifndef	MARGINS
@@ -73,12 +74,13 @@ typedef	struct button {
 	t_vec2	start;
 	int		width;
 	int		height;
-	void	(*on_click)(t_fdf *fdf);
+	int		enable;
+	int		projection;
 }	t_button;
 
 
 typedef struct data_interface {
-	t_button	button[3];
+	t_button	*button[3];
 	char		*file_name;
 	char		*map_size;
 	char		*offsets;
@@ -138,13 +140,19 @@ void	my_mlx_put_pixel(t_image *image, int x, int y, int color);
 void	fdf_rendering(t_fdf *fdf);
 int		on_keydown(int keycode, t_fdf *fdf);
 t_vec2	projection(t_vec3 vec3, t_fdf *fdf, int index[2]);
-int		on_mouseDown(int keycode, int x, int y, t_fdf *fdf);
+int		on_mouse_down(int keycode, int x, int y, t_fdf *fdf);
 void	reset_settings(t_fdf *fdf);
 int	on_cross_click(t_fdf *fdf);
 void	draw_interface(t_fdf *fdf);
-t_button	*new_button(int colors[2], t_vec2 vec2[2], void (*f)(t_fdf *fdf));
+void	create_buton(t_fdf *fdf);
+void	draw_rectangle(t_fdf *fdf, t_vec2 start, int size[2], int color);
 void	display_button(t_fdf *fdf);
-
+void	find_button(t_fdf *fdf, int x, int y);
+static void	fake_bold(t_fdf *fdf, t_vec2 pos, int color, char *string);
+void	put_string_infos(t_fdf *fdf);
+void	put_string_transformations(t_fdf *fdf);
+void	put_string_projections(t_fdf *fdf);
+void	put_string_control(t_fdf *fdf);
 void	put_string(t_fdf *fdf);
 
 // utils

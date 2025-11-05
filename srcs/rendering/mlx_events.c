@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:46:15 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 15:46:27 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:23:10 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	on_keydown(int keycode, t_fdf *fdf)
 {
 	if (keycode == UP_ARROW)
-		fdf->settings->roll += 5;	
+		fdf->settings->roll += 5;
 	if (keycode == DOWN_ARROW)
 		fdf->settings->roll -= 5;
 	if (keycode == LEFT_ARROW)
@@ -31,7 +31,7 @@ int	on_keydown(int keycode, t_fdf *fdf)
 	if (keycode == D_KEY)
 		fdf->settings->offset_x += 10;
 	if (keycode == MINUS_KEY)
-		fdf->settings->height -= 0.1;	
+		fdf->settings->height -= 0.1;
 	if (keycode == PLUS_KEY)
 		fdf->settings->height += 0.1;
 	if (keycode == ESCAPE)
@@ -42,12 +42,14 @@ int	on_keydown(int keycode, t_fdf *fdf)
 	return (1);
 }
 
-int	on_mouseDown(int keycode, int x, int y, t_fdf *fdf)
+int	on_mouse_down(int keycode, int x, int y, t_fdf *fdf)
 {
+	if (keycode == LEFT_CLICK || keycode == RIGHT_CLICK)
+		find_button(fdf, x, y);
 	if (keycode == SCROLL_UP)
 		fdf->settings->scale += 2;
 	if (keycode == SCROLL_DOWN && fdf->settings->scale >= 2)
-		fdf->settings->scale -= 2;;
+		fdf->settings->scale -= 2;
 	fdf_rendering(fdf);
 	return (1);
 }

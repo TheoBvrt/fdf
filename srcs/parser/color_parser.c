@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:21:09 by thbouver          #+#    #+#             */
-/*   Updated: 2025/10/28 16:00:24 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:13:02 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	is_inbase(char c)
 
 	cbase = "0123456789ABCDEF";
 	mbase = "0123456789abcdef";
-	
 	index = 0;
 	while (index < 16)
 	{
@@ -31,7 +30,7 @@ static int	is_inbase(char c)
 	return (0);
 }
 
-int ahtoi(char *str)
+static int	ahtoi(char *str)
 {
 	int	index;
 	int	res;

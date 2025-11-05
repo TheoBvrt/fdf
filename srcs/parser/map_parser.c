@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/04 22:12:37 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/05 18:15:17 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	fill_line(t_fdf *fdf, char **array, int y)
 		return (0);
 	if (y == 0)
 		fdf->map_width = i;
-	i = 0; 
+	i = 0;
 	while (array[i])
 	{
 		tmp = ft_split(array[i], ',');
@@ -89,10 +89,10 @@ int	create_vec3_tab(t_fdf *fdf, char *file_name)
 
 int	get_height_size(char *file_name)
 {
-	char *line;
-	int	size;
-	int	fd;
-	
+	char	*line;
+	int		size;
+	int		fd;
+
 	size = 0;
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
@@ -123,7 +123,7 @@ int	parse_map(char *file_name, t_fdf *fdf)
 	if (!create_vec3_tab(fdf, file_name))
 	{
 		free_vec3_tab(fdf->map, fdf->map_height);
-		return (1);	
+		return (1);
 	}
 	return (1);
 }

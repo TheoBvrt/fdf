@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:18:52 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 15:03:16 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:12:00 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,8 @@ void	clean_program(t_fdf *fdf)
 	free(fdf->data_interface.height_scale);
 	free(fdf->data_interface.scale);
 	free(fdf->data_interface.offsets);
+	free(fdf->data_interface.button[0]);
+	free(fdf->data_interface.button[1]);
+	free(fdf->data_interface.button[2]);
 	exit(1);
 }
