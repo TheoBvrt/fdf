@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:46:15 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/04 15:08:33 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:46:27 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	on_keydown(int keycode, t_fdf *fdf)
 	if (keycode == ESCAPE)
 		clean_program(fdf);
 	if (keycode == R_KEY)
-		reset_rotation(fdf);
+		reset_settings(fdf);
 	fdf_rendering(fdf);
 	return (1);
 }

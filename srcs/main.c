@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/04 23:26:16 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/05 15:45:44 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	t_render_settings	render_settings;
 
 	render_settings.scale = 30;
-	render_settings.projections = ISOMETRIC;
+	render_settings.projections = SPHERIC;
 	fdf.win_width = WIDTH;
 	fdf.win_height = HEIGHT;;
 	fdf.map = NULL;
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 		&image.line_length, &image.endian);
 	fdf.settings = &render_settings;
 	set_interface_data(&fdf);
-	reset_rotation(&fdf);
+	reset_settings(&fdf);
 	fdf.image = &image;
 	center_point(&fdf);
 

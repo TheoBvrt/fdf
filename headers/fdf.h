@@ -29,8 +29,8 @@
 # endif
 
 # ifndef CONSTANT
-#  define WIDTH 1920
-#  define HEIGHT 1080
+#  define WIDTH 2560
+#  define HEIGHT 1440
 #  define ANGLE 0.523599
 #  define ISOMETRIC 1
 #  define ORTHOGRAPHIC 2
@@ -45,7 +45,7 @@
 # endif
 
 #ifndef	MARGINS
-#  define TITLE_X WIDTH * 0.026
+#  define TITLE_X WIDTH * 0.035
 #  define TITLE_Y HEIGHT * 0.05
 #  define CATEGORIE_X_MARGIN WIDTH * 0.05
 #  define SUB_ITEM_MARGIN WIDTH * 0.12
@@ -67,12 +67,24 @@ typedef struct vec3 {
 	int		color;
 }	t_vec3;
 
+typedef	struct button {
+	int		color;
+	int		accent_color;
+	t_vec2	start;
+	int		width;
+	int		height;
+	void	(*on_click)(t_fdf *fdf);
+}	t_button;
+
+
 typedef struct data_interface {
-	char	*file_name;
-	char	*map_size;
-	char	*height_scale;
-	char	*scale;
-	char	*angle;
+	t_button	button[3];
+	char		*file_name;
+	char		*map_size;
+	char		*offsets;
+	char		*height_scale;
+	char		*scale;
+	char		*angle;
 }	t_data_interface;
 
 typedef struct image {
@@ -113,6 +125,7 @@ int	parse_map(char *file_name, t_fdf *fdf);
 int	args_checker(int argc, char **argv);
 int ahtoi(char *str);
 int	get_color(char *str);
+char	*format_offsets(int offset_x, int offset_y);
 void	set_interface_data(t_fdf *fdf);
 void	update_interface_data(t_fdf *fdf);
 
@@ -126,9 +139,11 @@ void	fdf_rendering(t_fdf *fdf);
 int		on_keydown(int keycode, t_fdf *fdf);
 t_vec2	projection(t_vec3 vec3, t_fdf *fdf, int index[2]);
 int		on_mouseDown(int keycode, int x, int y, t_fdf *fdf);
-void	reset_rotation(t_fdf *fdf);
+void	reset_settings(t_fdf *fdf);
 int	on_cross_click(t_fdf *fdf);
 void	draw_interface(t_fdf *fdf);
+t_button	*new_button(int colors[2], t_vec2 vec2[2], void (*f)(t_fdf *fdf));
+void	display_button(t_fdf *fdf);
 
 void	put_string(t_fdf *fdf);
 

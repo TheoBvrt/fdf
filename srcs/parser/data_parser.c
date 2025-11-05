@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 22:13:23 by theo              #+#    #+#             */
-/*   Updated: 2025/11/04 23:37:03 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/05 15:46:56 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,7 @@ void	set_interface_data(t_fdf *fdf)
 	fdf->data_interface.file_name = format_file_name(fdf->data_interface.file_name);
 	fdf->data_interface.map_size = format_map_size(fdf->map_height, fdf->map_width);
 	fdf->data_interface.angle = NULL;
+	fdf->data_interface.height_scale = NULL;
+	fdf->data_interface.scale = NULL;
+	fdf->data_interface.offsets = NULL;
 }

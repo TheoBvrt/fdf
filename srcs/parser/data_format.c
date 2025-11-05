@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   data_format.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 23:02:39 by theo              #+#    #+#             */
-/*   Updated: 2025/11/04 23:39:13 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/05 15:27:09 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fdf.h"
 
-static char	*concat_float_part(char *integer, char *decimal)
+static char	*concat_float_part(char *integer, char *decimal, int negative)
 {
 	char	*str;
 	size_t	size;
@@ -21,6 +21,8 @@ static char	*concat_float_part(char *integer, char *decimal)
 	str = ft_calloc(size, sizeof(char));
 	if (!str)
 		return (NULL);
+	if (negative == 1)
+		ft_strlcat(str, "-", size);
 	ft_strlcat(str, integer, size);
 	ft_strlcat(str, ".", size);
 	ft_strlcat(str, decimal, size);
@@ -32,7 +34,11 @@ static char *ft_ftoa(float number)
 	char	*str;
 	char	*integer;
 	char	*decimal;
+	int		negative;
 
+	negative = 0;
+	if (number < 0 && number > -1.0)
+		negative = 1;
 	integer = ft_itoa((int)number);
 	if (!integer)
 		return (NULL);
@@ -42,7 +48,7 @@ static char *ft_ftoa(float number)
 		free (integer);
 		return (NULL);
 	}
-	str = concat_float_part(integer, decimal);
+	str = concat_float_part(integer, decimal, negative);
 	free (integer);
 	free (decimal);
 	return (str);
@@ -91,7 +97,17 @@ static char	*format_angle(int roll, int pitch, int yaw)
 
 void	update_interface_data(t_fdf *fdf)
 {
+	char	*tmp;
+
+	tmp = ft_itoa(fdf->settings->scale);
 	free (fdf->data_interface.angle);
+	free (fdf->data_interface.height_scale);
+	free (fdf->data_interface.scale);
+	free (fdf->data_interface.offsets);
 	fdf->data_interface.angle = format_angle(fdf->settings->roll,
 		fdf->settings->pitch, fdf->settings->yaw);
+	fdf->data_interface.height_scale = ft_ftoa(fdf->settings->height);
+	fdf->data_interface.scale = ft_strjoin("x", tmp);
+	fdf->data_interface.offsets = format_offsets(fdf->settings->offset_x, fdf->settings->offset_y);
+	free (tmp);
 }

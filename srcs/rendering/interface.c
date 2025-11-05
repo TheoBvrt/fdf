@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:36:26 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/04 23:24:55 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/05 15:56:17 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,33 @@ void	put_string(t_fdf *fdf)
 {
 	mlx_set_font(fdf->mlx, fdf->mlx_win, TITLE_FONT);
 	update_interface_data(fdf);
-	fake_bold(fdf, (t_vec2){TITLE_X, TITLE_Y}, MAIN_COLOR, "// MAP INFOS \\\\");
-	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT * 0.09, MAIN_COLOR, "FILE : ");
-	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT * 0.09, ACCENT_COLOR, fdf->data_interface.file_name);
-
-	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT * 0.125, MAIN_COLOR, "SIZE : ");
-	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT * 0.125, ACCENT_COLOR, fdf->data_interface.map_size);
-
-	fake_bold(fdf, (t_vec2){TITLE_X, HEIGHT * 0.190}, MAIN_COLOR, "// TRANSFORMATIONS \\\\");
-
-	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT * 0.23, MAIN_COLOR, "OFFSETS : ");
-	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT * 0.23, ACCENT_COLOR, fdf->data_interface.file_name);
-
-	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT * 0.265, MAIN_COLOR, "ANGLE : ");
-	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT * 0.265, ACCENT_COLOR, fdf->data_interface.angle);
-
-	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT * 0.3, MAIN_COLOR, "HEIGHT : ");
-	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT * 0.3, ACCENT_COLOR, fdf->data_interface.file_name);
-
-	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT * 0.335, MAIN_COLOR, "ZOOM : ");
-	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT * 0.335, ACCENT_COLOR, fdf->data_interface.file_name);
+	fake_bold(fdf, (t_vec2){TITLE_X, TITLE_Y}, MAIN_COLOR, "MAP INFOS");
+	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT
+		* 0.09, MAIN_COLOR, "FILE : ");
+	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT
+		* 0.09, ACCENT_COLOR, fdf->data_interface.file_name);
+	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT
+		* 0.125, MAIN_COLOR, "SIZE : ");
+	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT
+		* 0.125, ACCENT_COLOR, fdf->data_interface.map_size);
+	fake_bold(fdf, (t_vec2){TITLE_X, HEIGHT * 0.190},
+		MAIN_COLOR, "TRANSFORMATIONS");
+	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT
+		* 0.23, MAIN_COLOR, "OFFSETS : ");
+	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT
+		* 0.23, ACCENT_COLOR, fdf->data_interface.offsets);
+	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT
+		* 0.265, MAIN_COLOR, "ANGLE : ");
+	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT
+		* 0.265, ACCENT_COLOR, fdf->data_interface.angle);
+	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT
+		* 0.3, MAIN_COLOR, "HEIGHT : ");
+	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT
+		* 0.3, ACCENT_COLOR, fdf->data_interface.height_scale);
+	mlx_string_put(fdf->mlx, fdf->mlx_win, CATEGORIE_X_MARGIN, HEIGHT
+		* 0.335, MAIN_COLOR, "ZOOM : ");
+	mlx_string_put(fdf->mlx, fdf->mlx_win, SUB_ITEM_MARGIN, HEIGHT
+		* 0.335, ACCENT_COLOR, fdf->data_interface.scale);
 }
 
 void	draw_interface(t_fdf *fdf)
