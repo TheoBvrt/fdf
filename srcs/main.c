@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 18:22:54 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:25:48 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	t_render_settings	render_settings;
 
 	render_settings.scale = 30;
-	render_settings.projections = ORTHOGRAPHIC;
+	render_settings.projections = ISOMETRIC;
 	fdf.win_width = WIDTH;
 	fdf.win_height = HEIGHT;;
 	fdf.map = NULL;

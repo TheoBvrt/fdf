@@ -125,7 +125,6 @@ typedef struct fdf {
 // parsing
 int	parse_map(char *file_name, t_fdf *fdf);
 int	args_checker(int argc, char **argv);
-int ahtoi(char *str);
 int	get_color(char *str);
 char	*format_offsets(int offset_x, int offset_y);
 void	set_interface_data(t_fdf *fdf);
