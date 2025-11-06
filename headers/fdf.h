@@ -10,6 +10,8 @@
 # ifndef KEYCODE
 #  define DEG_TO_RADIAN(x) ((x) * M_PI / 180)
 #  define DEFAULT_COLOR 0x2e808a
+#  define DEFAULT_START_COLOR 0x2e808a
+#  define DEFAULT_END_COLOR 0xff7b00
 #  define ESCAPE 65307
 #  define SCROLL_UP 4
 #  define SCROLL_DOWN 5
@@ -112,6 +114,7 @@ typedef struct render_settings {
 	int		pitch;
 	int		yaw;
 	int		projections;
+	int		use_color_scheme;
 	float	height;
 }	t_render_settings;
 
@@ -126,12 +129,16 @@ typedef struct fdf {
 	int					map_width;
 	int					win_width;
 	int					win_height;
+	int					min_height;
+	int					max_height;
 }	t_fdf;
 
 // parsing
+int get_gradient(int c1, int c2, float t);
+void	create_color_scheme(t_fdf *fdf);
 int	parse_map(char *file_name, t_fdf *fdf);
 int	args_checker(int argc, char **argv);
-int	get_color(char *str);
+int	get_color(t_fdf *fdf, char *str);
 char	*format_offsets(int offset_x, int offset_y);
 void	set_interface_data(t_fdf *fdf);
 void	update_interface_data(t_fdf *fdf);

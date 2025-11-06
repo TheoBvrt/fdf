@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 18:15:17 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:46:31 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	fill_line(t_fdf *fdf, char **array, int y)
 		fdf->map[y][i].x = i;
 		fdf->map[y][i].y = y;
 		fdf->map[y][i].z = (float)ft_atoi(tmp[0]);
-		fdf->map[y][i].color = get_color(tmp[1]);
+		fdf->map[y][i].color = get_color(fdf, tmp[1]);
 		free_tab(tmp);
 		free (array[i]);
 		i ++;

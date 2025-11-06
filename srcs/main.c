@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 18:25:48 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:00:32 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,27 @@ int	main(int argc, char **argv)
 	t_fdf				fdf;
 	t_render_settings	render_settings;
 
+	fdf.max_height = 0;
+	fdf.min_height = 0;
 	render_settings.scale = 30;
 	render_settings.projections = ISOMETRIC;
+	render_settings.use_color_scheme = 1;
 	fdf.win_width = WIDTH;
 	fdf.win_height = HEIGHT;;
 	fdf.map = NULL;
+		fdf.settings = &render_settings;
 	if (!args_checker(argc, argv))
 		return(1);
 	if (!parse_map(argv[1], &fdf))
 		return (1);
+	if (fdf.settings->use_color_scheme == 1)
+		create_color_scheme(&fdf);
 	fdf.data_interface.file_name = argv[1];
 	fdf.mlx = mlx_init();
 	fdf.mlx_win = mlx_new_window(fdf.mlx, fdf.win_width, fdf.win_height, "FdF");
 	image.img = mlx_new_image(fdf.mlx, WIDTH, HEIGHT);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, 
 		&image.line_length, &image.endian);
-	fdf.settings = &render_settings;
 	set_interface_data(&fdf);
 	reset_settings(&fdf);
 	fdf.image = &image;

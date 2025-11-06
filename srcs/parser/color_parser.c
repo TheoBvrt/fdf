@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:21:09 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 18:13:02 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:40:01 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	ahtoi(char *str)
 	return (res);
 }
 
-int	get_color(char *str)
+int	get_color(t_fdf *fdf, char *str)
 {
 	int	color;
 
@@ -64,6 +64,7 @@ int	get_color(char *str)
 		color = ahtoi(str);
 		if (color == -1)
 			return (DEFAULT_COLOR);
+		fdf->settings->use_color_scheme = 0;
 	}
 	else
 		color = DEFAULT_COLOR;
