@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:00:26 by theo              #+#    #+#             */
-/*   Updated: 2025/11/05 18:21:43 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 21:43:35 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ t_vec3	rotate_z(t_vec3 point, float angle)
 
 void	reset_settings(t_fdf *fdf)
 {
-	fdf->settings->roll = 0;
-	fdf->settings->pitch = 0;
-	fdf->settings->yaw = 0;
-	fdf->settings->offset_x = (WIDTH / 1.6);
-	fdf->settings->offset_y = (HEIGHT / 2);
-	fdf->settings->height = 0.3;
+	fdf->settings.roll = 0;
+	fdf->settings.pitch = 0;
+	fdf->settings.yaw = 0;
+	fdf->settings.offset_x = (WIDTH / 1.6);
+	fdf->settings.offset_y = (HEIGHT / 2);
+	fdf->settings.height = 0.3;
 }

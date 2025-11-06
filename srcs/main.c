@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:36 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 17:00:32 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 21:48:30 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,20 @@ int	main(int argc, char **argv)
 {
 	t_image				image;
 	t_fdf				fdf;
-	t_render_settings	render_settings;
 
 	fdf.max_height = 0;
 	fdf.min_height = 0;
-	render_settings.scale = 30;
-	render_settings.projections = ISOMETRIC;
-	render_settings.use_color_scheme = 1;
+	fdf.settings.scale = 30;
+	fdf.settings.projections = ISOMETRIC;
+	fdf.settings.use_color_scheme = 1;
 	fdf.win_width = WIDTH;
 	fdf.win_height = HEIGHT;;
 	fdf.map = NULL;
-		fdf.settings = &render_settings;
 	if (!args_checker(argc, argv))
 		return(1);
 	if (!parse_map(argv[1], &fdf))
 		return (1);
-	if (fdf.settings->use_color_scheme == 1)
+	if (fdf.settings.use_color_scheme == 1)
 		create_color_scheme(&fdf);
 	fdf.data_interface.file_name = argv[1];
 	fdf.mlx = mlx_init();

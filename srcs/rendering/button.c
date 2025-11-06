@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   button.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:55:57 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 18:20:50 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 21:46:05 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	on_click(t_fdf *fdf, int projection)
 {
-	fdf->settings->projections = projection;
+	fdf->settings.projections = projection;
 }
 
 static t_button	*new_button(int colors[2], t_vec2 start, int size[], int proj)

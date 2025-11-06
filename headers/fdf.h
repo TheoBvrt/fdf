@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/06 21:41:21 by theo              #+#    #+#             */
+/*   Updated: 2025/11/06 21:42:31 by theo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
@@ -9,9 +21,6 @@
 
 # ifndef KEYCODE
 #  define DEG_TO_RADIAN(x) ((x) * M_PI / 180)
-#  define DEFAULT_COLOR 0x2e808a
-#  define DEFAULT_START_COLOR 0x2e808a
-#  define DEFAULT_END_COLOR 0xff7b00
 #  define ESCAPE 65307
 #  define SCROLL_UP 4
 #  define SCROLL_DOWN 5
@@ -31,8 +40,8 @@
 # endif
 
 # ifndef CONSTANT
-#  define WIDTH 2560
-#  define HEIGHT 1440
+#  define WIDTH 1920
+#  define HEIGHT 1080
 #  define ANGLE 0.523599
 #  define ISOMETRIC 1
 #  define ORTHOGRAPHIC 2
@@ -40,6 +49,9 @@
 # endif
 
 # ifndef COLOR
+#  define DEFAULT_COLOR 0x2e808a
+#  define DEFAULT_START_COLOR 0x2e808a
+#  define DEFAULT_END_COLOR 0xff7b00
 #  define PROJECTION_BACKGROUND 0x151515
 #  define INTERFACE_BACKGROUND 0x202020
 #  define MAIN_COLOR 0xf2f0f0
@@ -55,7 +67,7 @@
 # endif
 
 # ifndef FONT
-# define TITLE_FONT "-misc-fixed-medium-r-normal--24-230-75-75-c-120-iso8859-1"
+# define TF "-misc-fixed-medium-r-normal--24-230-75-75-c-120-iso8859-1"
 # endif
 
 typedef struct vec2 {
@@ -121,7 +133,7 @@ typedef struct render_settings {
 typedef struct fdf {
 	t_vec3				**map;
 	t_image				*image;
-	t_render_settings	*settings;
+	t_render_settings	settings;
 	t_data_interface	data_interface;
 	void				*mlx;
 	void				*mlx_win;

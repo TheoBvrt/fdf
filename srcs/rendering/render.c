@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 17:02:56 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 21:41:59 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ void	fdf_rendering(t_fdf *fdf)
 	}
 	draw_interface(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->image->img, 0, 0);
-	mlx_set_font(fdf->mlx, fdf->mlx_win, TITLE_FONT);
+	mlx_set_font(fdf->mlx, fdf->mlx_win, TF);
 	put_string(fdf);
 }
