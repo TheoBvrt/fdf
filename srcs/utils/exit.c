@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:18:52 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 18:12:00 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 22:43:49 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	clean_program(t_fdf *fdf)
 	free(fdf->data_interface.button[0]);
 	free(fdf->data_interface.button[1]);
 	free(fdf->data_interface.button[2]);
-	exit(1);
+	exit(0);
 }

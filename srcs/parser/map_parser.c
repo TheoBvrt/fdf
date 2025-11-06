@@ -6,26 +6,14 @@
 /*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 22:03:36 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/07 00:00:30 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	get_count_of_array(char **array)
+static int	fill_line(t_fdf *fdf, char **array, int y)
 {
-	int	count;
-
-	count = 0;
-	while (array[count])
-		count ++;
-	return (count);
-}
-
-int	fill_line(t_fdf *fdf, char **array, int y)
-{
-	char	**tmp;
-	char	*nl;
 	int		i;
 
 	i = get_count_of_array(array);
@@ -37,25 +25,14 @@ int	fill_line(t_fdf *fdf, char **array, int y)
 	i = 0;
 	while (array[i])
 	{
-		tmp = ft_split(array[i], ',');
-		if (!tmp)
-			return (0);
-		nl = ft_strchr(tmp[1], '\n');
-		if (nl)
-			*nl = '\0';
-		fdf->map[y][i].x = i;
-		fdf->map[y][i].y = y;
-		fdf->map[y][i].z = (float)ft_atoi(tmp[0]);
-		fdf->map[y][i].color = get_color(fdf, tmp[1]);
-		free_tab(tmp);
-		free (array[i]);
+		fill_point(fdf, array[i], y, i);
 		i ++;
 	}
 	free (array);
 	return (1);
 }
 
-int	create_vec3_tab(t_fdf *fdf, char *file_name)
+static int	create_vec3_tab(t_fdf *fdf, char *file_name)
 {
 	char	**array;
 	char	*line;
@@ -73,21 +50,15 @@ int	create_vec3_tab(t_fdf *fdf, char *file_name)
 		if (!array)
 			return (0);
 		free (line);
-		if (!fill_line(fdf, array, index))
-		{
-			close (fd);
-			line = get_next_line(fd);
-			return (0);
-		}
+		if (!fill_line(fdf, array, index++))
+			return (close (fd), 0);
 		line = get_next_line(fd);
-		index ++;
 	}
 	free (line);
-	close (fd);
-	return (1);
+	return (close(fd), 1);
 }
 
-int	get_height_size(char *file_name)
+static int	get_height_size(char *file_name)
 {
 	char	*line;
 	int		size;
@@ -105,8 +76,7 @@ int	get_height_size(char *file_name)
 		line = get_next_line(fd);
 	}
 	free (line);
-	close (fd);
-	return (size);
+	return (close(fd), size);
 }
 
 int	parse_map(char *file_name, t_fdf *fdf)

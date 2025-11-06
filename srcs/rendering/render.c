@@ -6,42 +6,38 @@
 /*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:34 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 21:41:59 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/06 23:47:19 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fdf.h"
+#include "fdf.h"
 
-static void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end, int color_start, int color_end)
+static void	dda_line(t_fdf *fdf, t_vec2 start, t_vec2 end, int colors[2])
 {
-	int color;
-	int dx = end.x - start.x;
-	int dy = end.y - start.y;
+	t_dda	dda;
 
-	int steps = abs(dy);
-
-	if ((!(start.x >= 0 && start.x <= WIDTH) || !(start.y >= 0 && start.y <= HEIGHT))
-		&& (!(end.x >= 0 && end.x <= WIDTH) || !(end.y >= 0 && end.y <= HEIGHT)))
-			return ;	
-	if (abs(dx) > abs(dy))
-		steps = abs(dx);
-
-	float Xinc = dx / (float)steps;
-	float Yinc = dy / (float)steps;
-
-	float X = start.x;
-	float Y = start.y;
-	int index = 0;
-	while (index <= steps)
+	dda.i = 0;
+	dda.dx = end.x - start.x;
+	dda.dy = end.y - start.y;
+	dda.s = abs(dda.dy);
+	if ((!(start.x >= 0 && start.x <= WIDTH)
+			|| !(start.y >= 0 && start.y <= HEIGHT))
+		&& (!(end.x >= 0 && end.x <= WIDTH)
+			|| !(end.y >= 0 && end.y <= HEIGHT)))
+		return ;
+	if (abs(dda.dx) > abs(dda.dy))
+		dda.s = abs(dda.dx);
+	dda.x_inc = dda.dx / (float)dda.s;
+	dda.y_inc = dda.dy / (float)dda.s;
+	dda.x = start.x;
+	dda.y = start.y;
+	while (dda.i <= dda.s)
 	{
-		if (color_start == color_end)
-			color = color_start;
-		else
-			color = get_gradient(color_end, color_start, (float)index / steps);
-		my_mlx_put_pixel(fdf->image, X, Y, color);
-		X += Xinc;
-		Y += Yinc;
-		index ++;
+		dda.color = get_gradient(colors[1], colors[0], (float)dda.i / dda.s);
+		my_mlx_put_pixel(fdf->image, dda.x, dda.y, dda.color);
+		dda.x += dda.x_inc;
+		dda.y += dda.y_inc;
+		dda.i ++;
 	}
 }
 
@@ -54,7 +50,8 @@ static void	clear_screen(t_fdf *fdf)
 	mlx_destroy_image(fdf->mlx, fdf->image->img);
 	fdf->image->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
 	fdf->image->addr = mlx_get_data_addr(fdf->image->img,
-		&fdf->image->bits_per_pixel, &fdf->image->line_length, &fdf->image->endian);
+			&fdf->image->bits_per_pixel, &fdf->image->line_length,
+			&fdf->image->endian);
 	while (y <= HEIGHT)
 	{
 		x = 0;
@@ -70,32 +67,28 @@ static void	clear_screen(t_fdf *fdf)
 
 void	fdf_rendering(t_fdf *fdf)
 {
-	t_vec2	start_pos;
-	t_vec3	tmp;
-	int		y;
-	int		x;
+	t_rendering	rd;
 
-	y = 0;
+	rd.y = -1;
 	clear_screen(fdf);
-	while (y < fdf->map_height)
+	while (++rd.y < fdf->map_height)
 	{
-		x = 0;
-		while (x < fdf->map_width)
+		rd.x = -1;
+		while (++rd.x < fdf->map_width)
 		{
-			tmp = fdf->map[y][x];
-			start_pos = projection(tmp, fdf, (int []){y, x});
-			if (x - 1 >= 0)
-				dda_line(fdf, start_pos, projection(fdf->map[y][x - 1],
-						fdf, (int []){y, x - 1}), fdf->map[y][x - 1].color, tmp.color);
-			if (y - 1 >= 0)
-				dda_line(fdf, start_pos, projection(fdf->map[y - 1][x],
-						fdf, (int []){y - 1, x}), fdf->map[y - 1][x].color, tmp.color);
-			x ++;
+			rd.tmp = fdf->map[rd.y][rd.x];
+			rd.start = projection(rd.tmp, fdf, (int []){rd.y, rd.x});
+			if (rd.x - 1 >= 0)
+				dda_line(fdf, rd.start, projection(fdf->map[rd.y][rd.x - 1],
+						fdf, (int []){rd.y, rd.x - 1}),
+					(int []){fdf->map[rd.y][rd.x - 1].color, rd.tmp.color});
+			if (rd.y - 1 >= 0)
+				dda_line(fdf, rd.start, projection(fdf->map[rd.y - 1][rd.x],
+						fdf, (int []){rd.y - 1, rd.x}),
+					(int []){fdf->map[rd.y - 1][rd.x].color, rd.tmp.color});
 		}
-		y ++;
 	}
 	draw_interface(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->image->img, 0, 0);
-	mlx_set_font(fdf->mlx, fdf->mlx_win, TF);
 	put_string(fdf);
 }

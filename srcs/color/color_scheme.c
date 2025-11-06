@@ -6,7 +6,7 @@
 /*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:45:54 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 22:23:27 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/06 22:45:01 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	assign_color(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->map_width)
 		{
-			tmp = (fdf->map[y][x].z + color_range - fdf->max_height) / color_range;
+			tmp = (fdf->map[y][x].z + color_range - fdf->max_height)
+				/ color_range;
 			tmp = get_gradient(DEFAULT_END_COLOR, DEFAULT_START_COLOR, tmp);
 			fdf->map[y][x].color = tmp;
 			x ++;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   data_format_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:03:49 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 15:46:37 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 22:41:05 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*str_concat_offsets(char *offset_x, char *offset_y)
+static char	*str_concat_offsets(char *offset_x, char *offset_y)
 {
 	char	*str;
 	size_t	size;

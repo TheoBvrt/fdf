@@ -6,11 +6,23 @@
 /*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:46:15 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 21:44:19 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/06 23:00:40 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	on_keydown_2(int keycode, t_fdf *fdf)
+{
+	if (keycode == MINUS_KEY)
+		fdf->settings.height -= 0.1;
+	if (keycode == PLUS_KEY)
+		fdf->settings.height += 0.1;
+	if (keycode == ESCAPE)
+		clean_program(fdf);
+	if (keycode == R_KEY)
+		reset_settings(fdf);
+}
 
 int	on_keydown(int keycode, t_fdf *fdf)
 {
@@ -30,14 +42,7 @@ int	on_keydown(int keycode, t_fdf *fdf)
 		fdf->settings.offset_x -= 10;
 	if (keycode == D_KEY)
 		fdf->settings.offset_x += 10;
-	if (keycode == MINUS_KEY)
-		fdf->settings.height -= 0.1;
-	if (keycode == PLUS_KEY)
-		fdf->settings.height += 0.1;
-	if (keycode == ESCAPE)
-		clean_program(fdf);
-	if (keycode == R_KEY)
-		reset_settings(fdf);
+	on_keydown_2(keycode, fdf);
 	fdf_rendering(fdf);
 	return (1);
 }
@@ -57,4 +62,5 @@ int	on_mouse_down(int keycode, int x, int y, t_fdf *fdf)
 int	on_cross_click(t_fdf *fdf)
 {
 	clean_program(fdf);
+	return (1);
 }

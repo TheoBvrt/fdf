@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:36:26 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/05 17:59:12 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 23:42:55 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	put_string(t_fdf *fdf)
 {
+	mlx_set_font(fdf->mlx, fdf->mlx_win, TF);
 	update_interface_data(fdf);
 	put_string_infos(fdf);
 	put_string_transformations(fdf);

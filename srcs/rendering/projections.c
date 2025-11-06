@@ -6,7 +6,7 @@
 /*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:33:07 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 21:45:27 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/06 22:36:57 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static t_vec2	isometric(t_vec3 vec3, t_fdf *fdf)
 static	t_vec2	spheric(t_vec3 vec3, t_fdf *fdf, double y, double x)
 {
 	t_vec2	screen_pos;
-	t_vec3	point;
 	double	theta;
 	double	phi;
 	double	radius;

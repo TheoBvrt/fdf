@@ -6,7 +6,7 @@
 /*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:55:57 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 21:46:05 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/07 00:06:53 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ void	create_buton(t_fdf *fdf)
 {
 	fdf->data_interface.button[0]
 		= new_button((int []){BUTTON_BACKGROUND, ACCENT_COLOR},
-			(t_vec2){TITLE_X, HEIGHT * 0.45}, (int []){WIDTH * 0.085,
+			(t_vec2){WIDTH * 0.035, HEIGHT * 0.45}, (int []){WIDTH * 0.085,
 			HEIGHT * 0.05}, SPHERIC);
 	fdf->data_interface.button[1]
 		= new_button((int []){BUTTON_BACKGROUND, ACCENT_COLOR},
-			(t_vec2){TITLE_X + WIDTH * 0.09, HEIGHT * 0.45},
+			(t_vec2){WIDTH * 0.035 + WIDTH * 0.09, HEIGHT * 0.45},
 			(int []){WIDTH * 0.085, HEIGHT * 0.05}, ORTHOGRAPHIC);
 	fdf->data_interface.button[2]
 		= new_button((int []){BUTTON_BACKGROUND, ACCENT_COLOR},
-			(t_vec2){TITLE_X, HEIGHT * 0.509},
+			(t_vec2){WIDTH * 0.035, HEIGHT * 0.509},
 			(int []){WIDTH * 0.175, HEIGHT * 0.05}, ISOMETRIC);
 	fdf->data_interface.button[2]->enable = 1;
 }

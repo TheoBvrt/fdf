@@ -6,12 +6,12 @@
 /*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:41:21 by theo              #+#    #+#             */
-/*   Updated: 2025/11/06 22:18:23 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/07 00:15:50 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FDF_H
+# define FDF_H
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
@@ -20,7 +20,6 @@
 # include "stdio.h"
 
 # ifndef KEYCODE
-#  define DEG_TO_RADIAN(x) ((x) * M_PI / 180)
 #  define ESCAPE 65307
 #  define SCROLL_UP 4
 #  define SCROLL_DOWN 5
@@ -59,36 +58,33 @@
 #  define BUTTON_BACKGROUND 0x302f2f
 # endif
 
-#ifndef	MARGINS
-#  define TITLE_X WIDTH * 0.035
-#  define TITLE_Y HEIGHT * 0.05
-#  define CATEGORIE_X_MARGIN WIDTH * 0.05
-#  define SUB_ITEM_MARGIN WIDTH * 0.12
-# endif
-
 # ifndef FONT
-# define TF "-misc-fixed-medium-r-normal--24-230-75-75-c-120-iso8859-1"
+#  define TF "-misc-fixed-medium-r-normal--24-230-75-75-c-120-iso8859-1"
 # endif
 
-typedef struct vec2 {
+typedef struct vec2
+{
 	float	x;
 	float	y;
 }	t_vec2;
 
-typedef struct vec3 {
+typedef struct vec3
+{
 	float	x;
 	float	y;
 	float	z;
 	int		color;
 }	t_vec3;
 
-typedef struct rgb_color {
+typedef struct rgb_color
+{
 	uint8_t	r;
 	uint8_t	g;
 	uint8_t	b;
 }	t_rgb_color;
 
-typedef	struct button {
+typedef struct button
+{
 	int		color;
 	int		accent_color;
 	t_vec2	start;
@@ -98,8 +94,8 @@ typedef	struct button {
 	int		projection;
 }	t_button;
 
-
-typedef struct data_interface {
+typedef struct data_interface
+{
 	t_button	*button[3];
 	char		*file_name;
 	char		*map_size;
@@ -109,7 +105,8 @@ typedef struct data_interface {
 	char		*angle;
 }	t_data_interface;
 
-typedef struct image {
+typedef struct image
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -117,8 +114,8 @@ typedef struct image {
 	int		endian;
 }	t_image;
 
-
-typedef struct render_settings {
+typedef struct render_settings
+{
 	int		scale;
 	int		offset_x;
 	int		offset_y;
@@ -130,7 +127,29 @@ typedef struct render_settings {
 	float	height;
 }	t_render_settings;
 
-typedef struct fdf {
+typedef struct dda
+{
+	int		color;
+	int		dx;
+	int		dy;
+	int		s;
+	int		i;
+	float	x_inc;
+	float	y_inc;
+	float	x;
+	float	y;
+}	t_dda;
+
+typedef struct rendering
+{
+	int		y;
+	int		x;
+	t_vec2	start;
+	t_vec3	tmp;
+}	t_rendering;
+
+typedef struct fdf
+{
 	t_vec3				**map;
 	t_image				*image;
 	t_render_settings	settings;
@@ -144,43 +163,44 @@ typedef struct fdf {
 }	t_fdf;
 
 // parsing
-int get_gradient(int c1, int c2, float t);
 void	create_color_scheme(t_fdf *fdf);
-int	parse_map(char *file_name, t_fdf *fdf);
-int	args_checker(int argc, char **argv);
-int	get_color(t_fdf *fdf, char *str);
-char	*format_offsets(int offset_x, int offset_y);
 void	set_interface_data(t_fdf *fdf);
 void	update_interface_data(t_fdf *fdf);
+char	*format_offsets(int offset_x, int offset_y);
+int		parse_map(char *file_name, t_fdf *fdf);
+int		args_checker(int argc, char **argv);
+int		get_gradient(int c1, int c2, float t);
+int		get_color(t_fdf *fdf, char *str);
+int		get_count_of_array(char **array);
+int		fill_point(t_fdf *fdf, char *array, int y, int index);
 
 // rendering
 t_vec3	rotate_x(t_vec3 point, float angle);
 t_vec3	rotate_y(t_vec3 point, float angle);
 t_vec3	rotate_z(t_vec3 point, float angle);
-t_vec3 **rotate_matrix(t_vec3 **vec3_tab, t_fdf *fdf, float angle, t_vec3 (*f)(t_vec3, float));
+t_vec2	projection(t_vec3 vec3, t_fdf *fdf, int index[2]);
 void	my_mlx_put_pixel(t_image *image, int x, int y, int color);
 void	fdf_rendering(t_fdf *fdf);
-int		on_keydown(int keycode, t_fdf *fdf);
-t_vec2	projection(t_vec3 vec3, t_fdf *fdf, int index[2]);
-int		on_mouse_down(int keycode, int x, int y, t_fdf *fdf);
 void	reset_settings(t_fdf *fdf);
-int	on_cross_click(t_fdf *fdf);
 void	draw_interface(t_fdf *fdf);
 void	create_buton(t_fdf *fdf);
 void	draw_rectangle(t_fdf *fdf, t_vec2 start, int size[2], int color);
 void	display_button(t_fdf *fdf);
 void	find_button(t_fdf *fdf, int x, int y);
-static void	fake_bold(t_fdf *fdf, t_vec2 pos, int color, char *string);
 void	put_string_infos(t_fdf *fdf);
 void	put_string_transformations(t_fdf *fdf);
 void	put_string_projections(t_fdf *fdf);
 void	put_string_control(t_fdf *fdf);
 void	put_string(t_fdf *fdf);
+int		on_keydown(int keycode, t_fdf *fdf);
+int		on_mouse_down(int keycode, int x, int y, t_fdf *fdf);
+int		on_cross_click(t_fdf *fdf);
 
 // utils
 void	free_tab(char **tab);
 void	free_vec3_tab(t_vec3 **tab, int size);
 void	clean_program(t_fdf *fdf);
 void	center_point(t_fdf *fdf);
+float	deg_to_radian(float x);
 
 #endif
