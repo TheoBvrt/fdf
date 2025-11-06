@@ -6,16 +6,16 @@ SRCS = ./srcs/main.c \
 		./srcs/rendering/put_pixel.c \
 		./srcs/rendering/render.c \
 		./srcs/rendering/matrix.c \
-		./srcs/rendering/mlx_events.c \
+		./srcs/rendering/events/mlx_events.c \
 		./srcs/parser/color_parser.c \
 		./srcs/rendering/projections.c \
-		./srcs/rendering/interface.c \
+		./srcs/rendering/interface/interface.c \
 		./srcs/utils/exit.c \
 		./srcs/parser/data_parser.c \
 		./srcs/data_formats/data_format.c \
 		./srcs/data_formats/data_format_2.c \
-		./srcs/rendering/button.c \
-		./srcs/rendering/display_string.c \
+		./srcs/rendering/interface/button.c \
+		./srcs/rendering/interface/display_string.c \
 		./srcs/color/color_scheme.c \
 		./srcs/color/color_manager.c \
 		./srcs/utils/utils.c
