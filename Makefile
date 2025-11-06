@@ -16,8 +16,8 @@ SRCS = ./srcs/main.c \
 		./srcs/data_formats/data_format_2.c \
 		./srcs/rendering/button.c \
 		./srcs/rendering/display_string.c \
-		./srcs/parser/color_scheme.c \
-		./srcs/utils/color_manager.c \
+		./srcs/color/color_scheme.c \
+		./srcs/color/color_manager.c \
 		./srcs/utils/utils.c
 
 OBJS = ${SRCS:.c=.o}
