@@ -68,6 +68,12 @@ typedef struct vec3 {
 	int		color;
 }	t_vec3;
 
+typedef struct rgb_color {
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+}	t_rgb_color;
+
 typedef	struct button {
 	int		color;
 	int		accent_color;
