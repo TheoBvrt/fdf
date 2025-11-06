@@ -1,8 +1,24 @@
 NAME = fdf
-SRCS = ./srcs/main.c ./srcs/error/error.c ./srcs/parser/map_parser.c ./srcs/utils/free_tab.c ./srcs/rendering/put_pixel.c \
-./srcs/rendering/render.c ./srcs/rendering/matrix.c ./srcs/rendering/mlx_events.c ./srcs/parser/color_parser.c ./srcs/rendering/projections.c \
-./srcs/rendering/interface.c ./srcs/utils/exit.c ./srcs/parser/data_parser.c ./srcs/parser/data_format.c ./srcs/parser/data_format_2.c \
-./srcs/rendering/button.c ./srcs/rendering/display_string.c ./srcs/parser/color_scheme.c ./srcs/utils/color_manager.c
+SRCS = ./srcs/main.c \
+		./srcs/error/error.c \
+		./srcs/parser/map_parser.c \
+		./srcs/utils/free_tab.c \
+		./srcs/rendering/put_pixel.c \
+		./srcs/rendering/render.c \
+		./srcs/rendering/matrix.c \
+		./srcs/rendering/mlx_events.c \
+		./srcs/parser/color_parser.c \
+		./srcs/rendering/projections.c \
+		./srcs/rendering/interface.c \
+		./srcs/utils/exit.c \
+		./srcs/parser/data_parser.c \
+		./srcs/data_formats/data_format.c \
+		./srcs/data_formats/data_format_2.c \
+		./srcs/rendering/button.c \
+		./srcs/rendering/display_string.c \
+		./srcs/parser/color_scheme.c \
+		./srcs/utils/color_manager.c \
+		./srcs/utils/utils.c
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc

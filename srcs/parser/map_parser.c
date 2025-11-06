@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 16:46:31 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/06 22:03:36 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ int	parse_map(char *file_name, t_fdf *fdf)
 		free_vec3_tab(fdf->map, fdf->map_height);
 		return (1);
 	}
+	if (fdf->settings.use_color_scheme == 1)
+		create_color_scheme(fdf);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:41:21 by theo              #+#    #+#             */
-/*   Updated: 2025/11/06 21:42:31 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/06 22:18:23 by theo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,6 @@ typedef struct fdf {
 	void				*mlx_win;
 	int					map_height;
 	int					map_width;
-	int					win_width;
-	int					win_height;
 	int					min_height;
 	int					max_height;
 }	t_fdf;
@@ -183,5 +181,6 @@ void	put_string(t_fdf *fdf);
 void	free_tab(char **tab);
 void	free_vec3_tab(t_vec3 **tab, int size);
 void	clean_program(t_fdf *fdf);
+void	center_point(t_fdf *fdf);
 
 #endif
