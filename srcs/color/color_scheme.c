@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_scheme.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:45:54 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/06 22:45:01 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/07 12:04:17 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,20 @@ static void	assign_color(t_fdf *fdf)
 	int		y;
 
 	y = 0;
-	tmp = 0;
 	color_range = fdf->max_height - fdf->min_height;
 	while (y < fdf->map_height)
 	{
 		x = 0;
 		while (x < fdf->map_width)
 		{
-			tmp = (fdf->map[y][x].z + color_range - fdf->max_height)
-				/ color_range;
-			tmp = get_gradient(DEFAULT_END_COLOR, DEFAULT_START_COLOR, tmp);
+			if (color_range == 0)
+				tmp = DEFAULT_COLOR;
+			else
+			{
+				tmp = (fdf->map[y][x].z + color_range - fdf->max_height)
+					/ color_range;
+				tmp = get_gradient(DEFAULT_END_COLOR, DEFAULT_START_COLOR, tmp);
+			}
 			fdf->map[y][x].color = tmp;
 			x ++;
 		}

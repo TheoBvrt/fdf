@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/07 00:00:30 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/07 11:58:42 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	parse_map(char *file_name, t_fdf *fdf)
 		return (1);
 	}
 	if (fdf->settings.use_color_scheme == 1)
+	{
 		create_color_scheme(fdf);
+	}
 	return (1);
 }

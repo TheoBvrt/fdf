@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:41:21 by theo              #+#    #+#             */
-/*   Updated: 2025/11/07 00:15:50 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/07 11:36:24 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 # endif
 
 # ifndef CONSTANT
-#  define WIDTH 1920
-#  define HEIGHT 1080
+#  define WIDTH 2560
+#  define HEIGHT 1440
 #  define ANGLE 0.523599
 #  define ISOMETRIC 1
 #  define ORTHOGRAPHIC 2
