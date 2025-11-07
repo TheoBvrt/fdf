@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:03:29 by thbouver          #+#    #+#             */
-/*   Updated: 2025/11/07 11:58:42 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:27:06 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,27 @@ static int	get_height_size(char *file_name)
 	char	*line;
 	int		size;
 	int		fd;
+	int		check;
 
 	size = 0;
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		return (-1);
 	line = get_next_line(fd);
+	check = check_size(line);
+	if (check == -1)
+		size = -1;
 	while (line)
 	{
-		size ++;
+		if (size != -1)
+			size ++;
 		free (line);
 		line = get_next_line(fd);
+		if (check_size(line) != check && line != NULL)
+			size = -1;
 	}
 	free (line);
-	return (close(fd), size);
+	return (close(fd), print_line_len_error(size), size);
 }
 
 int	parse_map(char *file_name, t_fdf *fdf)
@@ -96,8 +103,6 @@ int	parse_map(char *file_name, t_fdf *fdf)
 		return (1);
 	}
 	if (fdf->settings.use_color_scheme == 1)
-	{
 		create_color_scheme(fdf);
-	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 21:41:21 by theo              #+#    #+#             */
-/*   Updated: 2025/11/07 11:36:24 by thbouver         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:26:45 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ int		get_gradient(int c1, int c2, float t);
 int		get_color(t_fdf *fdf, char *str);
 int		get_count_of_array(char **array);
 int		fill_point(t_fdf *fdf, char *array, int y, int index);
+int		check_size(char *str);
 
 // rendering
 t_vec3	rotate_x(t_vec3 point, float angle);
@@ -197,6 +198,7 @@ int		on_mouse_down(int keycode, int x, int y, t_fdf *fdf);
 int		on_cross_click(t_fdf *fdf);
 
 // utils
+void	print_line_len_error(int size);
 void	free_tab(char **tab);
 void	free_vec3_tab(t_vec3 **tab, int size);
 void	clean_program(t_fdf *fdf);

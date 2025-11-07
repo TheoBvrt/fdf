@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theo <theo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thbouver <thbouver@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 22:48:26 by theo              #+#    #+#             */
-/*   Updated: 2025/11/06 22:55:15 by theo             ###   ########.fr       */
+/*   Updated: 2025/11/07 16:28:01 by thbouver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,19 @@ int	fill_point(t_fdf *fdf, char *array, int y, int index)
 	free_tab(tmp);
 	free (array);
 	return (1);
+}
+
+int	check_size(char *str)
+{
+	char	**tmp;
+	int		size;
+
+	if (str == NULL)
+		return (-1);
+	tmp = ft_split(str, ' ');
+	if (!tmp)
+		return (-1);
+	size = get_count_of_array(tmp);
+	free_tab(tmp);
+	return (size);
 }
